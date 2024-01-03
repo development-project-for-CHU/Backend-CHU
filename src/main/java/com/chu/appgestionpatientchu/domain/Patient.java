@@ -29,6 +29,8 @@ public class Patient {
     private String ville;
     private String adresse;
     private String codePostal;
+    @Temporal(value = TemporalType.DATE)
+    private Date dateNaissance;
 
     @Temporal(value = TemporalType.DATE)
     private Date createAt ;

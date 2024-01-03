@@ -19,6 +19,7 @@ public class PatientService {
     public void savePatient(Patient patient) {
 
         patient.setCreateAt(new Date(System.currentTimeMillis()));
+        patient.setUpdateAt(new Date(System.currentTimeMillis()));
         patientRepository.save(patient);
     }
 
@@ -41,6 +42,7 @@ public class PatientService {
 
     public Patient updatePatient(Long ipp, Patient updatedPatient) {
         Optional<Patient> existingPatientOptional = patientRepository.findById(ipp);
+        updatedPatient.setUpdateAt(new Date(System.currentTimeMillis()));
 
         if (existingPatientOptional.isPresent()) {
             Patient existingPatient = existingPatientOptional.get();
@@ -52,10 +54,11 @@ public class PatientService {
             existingPatient.setGenre(updatedPatient.getGenre());
             existingPatient.setCreateAt(updatedPatient.getCreateAt());
             existingPatient.setAdresse(updatedPatient.getAdresse());
+            existingPatient.setDateNaissance(updatedPatient.getDateNaissance());
             existingPatient.setCodePostal(updatedPatient.getCodePostal());
             existingPatient.setVille(updatedPatient.getVille());
             existingPatient.setUpdateAt(updatedPatient.getUpdateAt());
-           existingPatient.setDossierPatient(updatedPatient.getDossierPatient());
+            existingPatient.setDossierPatient(updatedPatient.getDossierPatient());
 
 
             return patientRepository.save(existingPatient);
@@ -69,5 +72,4 @@ public class PatientService {
             super(message);
         }
     }
-
 }
