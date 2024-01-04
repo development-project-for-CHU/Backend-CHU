@@ -29,7 +29,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 ### Spring Boot ###
-/application.yaml
+src/main/resources/application.yaml
 
 ### VS Code ###
 .vscode/
