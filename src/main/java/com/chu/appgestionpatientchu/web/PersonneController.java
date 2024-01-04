@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/personne")
 @RequiredArgsConstructor
 public class PersonneController {
@@ -23,10 +24,11 @@ public class PersonneController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(
+    public ResponseEntity<Long> save(
             @RequestBody Personne personne
     ) {
-        personneService.savePersonne(personne);
+       Personne p =   personneService.savePersonne(personne);
+       return new ResponseEntity<>(p.getId() , HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -59,6 +61,7 @@ public class PersonneController {
             @PathVariable("personneId") Long id,
             @RequestBody Personne updatedPersonne
     ) {
+        System.out.println(updatedPersonne);
         Personne personne = personneService.updatePersonne(id, updatedPersonne);
 
         if (personne != null) {

@@ -19,9 +19,8 @@ public class PersonneService {
     @Autowired
     private final PersonneRepository personneRepository;
 
-    public void savePersonne(Personne personne) {
-
-        personneRepository.save(personne);
+    public Personne savePersonne(Personne personne) {
+        return personneRepository.save(personne);
     }
     public List<Personne> findAllPersonne() {
         return personneRepository.findAll();
