@@ -48,7 +48,7 @@ public class PersonneService {
             existingPersonne.setUsername(updatedPersonne.getUsername());
             existingPersonne.setEmail(updatedPersonne.getEmail());
             existingPersonne.setPassword(updatedPersonne.getPassword());
-            existingPersonne.setNumero(updatedPersonne.getNumero());
+            existingPersonne.setNumTel(updatedPersonne.getNumTel());
             existingPersonne.setRoles(updatedPersonne.getRoles());
 
             return personneRepository.save(existingPersonne);

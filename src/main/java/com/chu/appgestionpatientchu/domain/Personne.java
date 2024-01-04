@@ -25,7 +25,7 @@ public class Personne {
     @Column(nullable = false)
     @Size(max = 100)
     private String password;
-    private  String numero;
+    private  String numTel;
     private Roles roles ;
 
     public void generateRandomPassword() {

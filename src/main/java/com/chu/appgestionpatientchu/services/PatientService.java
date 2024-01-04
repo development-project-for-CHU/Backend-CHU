@@ -2,6 +2,8 @@ package com.chu.appgestionpatientchu.services;
 
 
 import com.chu.appgestionpatientchu.domain.Patient;
+import com.chu.appgestionpatientchu.dto.PatientDto;
+import com.chu.appgestionpatientchu.mappers.PatientMapper;
 import com.chu.appgestionpatientchu.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +18,14 @@ import java.util.Optional;
 public class PatientService {
     @Autowired
     private final PatientRepository patientRepository;
-    public void savePatient(Patient patient) {
+    public PatientDto savePatient(PatientDto patientDto) {
 
-        patient.setCreateAt(new Date(System.currentTimeMillis()));
-        patient.setUpdateAt(new Date(System.currentTimeMillis()));
-        patientRepository.save(patient);
+        patientDto.setCreateAt(new Date(System.currentTimeMillis()));
+        patientDto.setUpdateAt(new Date(System.currentTimeMillis()));
+        Patient patient = PatientMapper.mapToPatient(patientDto);
+        Patient savedPatient =  patientRepository.save(patient);
+
+        return PatientMapper.mapToDto(savedPatient);
     }
 
     public List<Patient> findAllPatient() {

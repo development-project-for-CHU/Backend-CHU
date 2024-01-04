@@ -2,6 +2,7 @@ package com.chu.appgestionpatientchu.web;
 
 
 import com.chu.appgestionpatientchu.domain.Patient;
+import com.chu.appgestionpatientchu.dto.PatientDto;
 import com.chu.appgestionpatientchu.services.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/patient")
 @RequiredArgsConstructor
 public class PatientController {
@@ -21,10 +23,11 @@ private final PatientService patientService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(
-            @RequestBody Patient patient
+    public ResponseEntity<Long> save(
+            @RequestBody PatientDto patientDto
     ) {
-        patientService.savePatient(patient);
+        PatientDto savedPatient = patientService.savePatient(patientDto);
+        return new ResponseEntity<>(savedPatient.getIpp() , HttpStatus.CREATED);
     }
 
     @GetMapping

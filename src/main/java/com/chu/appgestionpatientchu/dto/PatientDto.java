@@ -19,7 +19,10 @@ public class PatientDto {
 
     private String nom ;
     private String prenom ;
-
+    private String adresse;
+    private String codePostal;
+    private String ville;
+    private Date dateNaissance;
     private String cin ;
     private String numTel ;
     private Genders genre ;
@@ -28,6 +31,6 @@ public class PatientDto {
 
     private Date updateAt;
 
-    private DossierPatientDto dossierPatient ;
+    private Long  idDossierPatient;
 
 }
