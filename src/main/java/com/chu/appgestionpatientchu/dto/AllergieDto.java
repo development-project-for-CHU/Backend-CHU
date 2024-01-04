@@ -23,5 +23,4 @@ public class AllergieDto {
     private Date addedAt ;
 
 
-    private List<PartieCommuneDto> ListPartieCommune ;
 }
