@@ -1,10 +1,7 @@
 package com.chu.appgestionpatientchu.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -24,6 +21,11 @@ public class Allergie {
     @Temporal(value = TemporalType.DATE)
     private Date addedAt ;
 
+
     @ManyToMany(mappedBy = "listAllergie")
     private List<PartieCommune> ListPartieCommune ;
+
+    // the following field is used for fake deletion
+    @NonNull
+    private boolean isDeleted  ;
 }

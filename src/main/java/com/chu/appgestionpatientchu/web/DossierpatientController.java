@@ -18,7 +18,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DossierpatientController {
 
-    @Autowired
     private final DossierpatientService dossierpatientService;
 
 

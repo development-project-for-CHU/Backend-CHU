@@ -13,7 +13,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DossierpatientService {
 
-    @Autowired
     private final DossierpatientRepository dossierpatientRepository;
     public void saveDossierpatient(DossierPatient dossierPatient) {
         dossierPatient.setDateCreation(new Date(System.currentTimeMillis()));
