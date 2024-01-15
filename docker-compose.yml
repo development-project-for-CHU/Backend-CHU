@@ -9,4 +9,4 @@ services:
       - POSTGRES_PASSWORD=passw@rd
       - POSTGRES_DB=CHU
     ports:
-      - "5432:5432"
+      - "5434:5434"

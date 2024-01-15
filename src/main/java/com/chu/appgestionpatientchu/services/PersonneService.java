@@ -43,8 +43,14 @@ public class PersonneService {
 
         if (existingPersonneOptional.isPresent()) {
             Personne existingPersonne = existingPersonneOptional.get();
-
-            existingPersonne.setUsername(updatedPersonne.getUsername());
+              existingPersonne.setService(updatedPersonne.getService());
+              existingPersonne.setCodePostal(updatedPersonne.getCodePostal());
+              existingPersonne.setVille(updatedPersonne.getVille());
+              existingPersonne.setAdresse(updatedPersonne.getAdresse());
+              existingPersonne.setGenre(updatedPersonne.getGenre());
+              existingPersonne.setDateNaissance(updatedPersonne.getDateNaissance());
+              existingPersonne.setPrenom(updatedPersonne.getPrenom());
+              existingPersonne.setNom(updatedPersonne.getNom());
             existingPersonne.setEmail(updatedPersonne.getEmail());
             existingPersonne.setPassword(updatedPersonne.getPassword());
             existingPersonne.setNumTel(updatedPersonne.getNumTel());

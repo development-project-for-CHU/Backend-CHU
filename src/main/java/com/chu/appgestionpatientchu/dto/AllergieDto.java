@@ -22,4 +22,7 @@ public class AllergieDto {
     private String  nomAllergie ;
     private Date addedAt;
     private List<Long> listIdPartieCommune ;
+
+
+
 }

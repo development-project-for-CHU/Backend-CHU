@@ -22,7 +22,7 @@ public class Personne {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
+
     private String email;
     @Column(nullable = false)
     @Size(max = 100)
