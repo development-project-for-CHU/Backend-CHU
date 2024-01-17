@@ -35,4 +35,4 @@ build/
 .vscode/
 
 ##configuration
-!**/src/main/resources/
+src/main/resources/application.properties
