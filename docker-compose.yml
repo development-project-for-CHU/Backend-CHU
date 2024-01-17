@@ -6,7 +6,8 @@ services:
     container_name: db
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=passw@rd
+      - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=CHU
     ports:
       - "5434:5434"
+      - "5433:5432"

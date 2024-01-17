@@ -16,9 +16,12 @@ public class DiagnostiqueConnue {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id ;
-     private String nomDiagnostique ;
+     private String nomDiagnostiqueConnue ;
      @Temporal(value = TemporalType.DATE)
      private Date addedAt;
+
+     @NonNull
+     private boolean isDeleted  ;
      @ManyToMany(mappedBy = "listDiagnostiqueConnue")
      private List<PartieCommune> listPartieCommune ;
 }

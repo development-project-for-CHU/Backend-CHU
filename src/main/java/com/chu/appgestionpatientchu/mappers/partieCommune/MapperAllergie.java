@@ -20,6 +20,7 @@ public class MapperAllergie {
         return AllergieDto.builder()
                 .nomAllergie(allergie.getNomAllergie())
                 .id(allergie.getId())
+                .addedAt(allergie.getAddedAt())
                 .listIdPartieCommune(
                         allergie.getListPartieCommune() != null ?
                                 allergie.getListPartieCommune().stream()
