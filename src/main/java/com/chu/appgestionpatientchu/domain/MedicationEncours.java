@@ -1,10 +1,7 @@
 package com.chu.appgestionpatientchu.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -19,9 +16,12 @@ public class MedicationEncours {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
-    private String nomMedicament ;
+    private String nomMedicationEncours ;
     @Temporal(value = TemporalType.DATE)
     private Date addedAt ;
+
+    @NonNull
+    private boolean isDeleted  ;
     @ManyToMany(mappedBy = "listMedicationEncours")
     private List<PartieCommune> ListPartieCommune ;
 }

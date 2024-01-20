@@ -21,5 +21,5 @@ public class MedicationEncoursDto {
 
     private Date addedAt ;
 
-    private List<PartieCommuneDto> ListPartieCommune ;
+    private List<Long> listIdPartieCommune ;
 }
