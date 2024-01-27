@@ -25,5 +25,5 @@ public class PrescriptionDiagnostiqueDto {
 
     private Date addedAt;
 
-    private List<PartieSpecialiseDto> listPartieSpecialise ;
+    private List<Long> listIdPartieSpecialise ;
 }
