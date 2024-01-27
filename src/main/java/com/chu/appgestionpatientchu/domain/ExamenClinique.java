@@ -1,9 +1,6 @@
 package com.chu.appgestionpatientchu.domain;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -28,5 +25,8 @@ public class ExamenClinique {
     private Date addedAt;
     @ManyToMany
     private List<PartieSpecialise> listPartieSpecialise ;
+
+    @NonNull
+    private boolean isDeleted  ;
 
 }

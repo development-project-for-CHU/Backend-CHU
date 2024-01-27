@@ -25,6 +25,6 @@ public class ExamenCliniqueDto {
 
     private Date addedAt;
 
-    private List<PartieSpecialiseDto> listPartieSpecialise ;
+    private List<Long> listIdPartieSpecialise ;
 
 }
