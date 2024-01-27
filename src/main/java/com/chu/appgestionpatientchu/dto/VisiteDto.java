@@ -1,6 +1,12 @@
 package com.chu.appgestionpatientchu.dto;
 
 
+import com.chu.appgestionpatientchu.domain.DossierPatient;
+import com.chu.appgestionpatientchu.domain.PartieCommune;
+import com.chu.appgestionpatientchu.domain.PartieSpecialise;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +24,11 @@ public class VisiteDto {
     private Long id ;
 
     private Date dateVisite ;
-    private DossierPatientDto dossierPatient ;
-    private PartieCommuneDto partieCommune ;
-    private PartieSpecialiseDto partieSpecialise ;
+
+    private long dossierPatientid ;
+
+
+    private long partieCommuneid ;
+
+    private long partieSpecialiseid ;
 }

@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @Data
 @Builder
 @Entity

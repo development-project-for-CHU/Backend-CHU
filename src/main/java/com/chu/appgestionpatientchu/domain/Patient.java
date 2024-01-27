@@ -39,6 +39,6 @@ public class Patient {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "DOSSIER_PATIENT" , referencedColumnName = "id")
-    private DossierPatient dossierPatient ;
+    public DossierPatient dossierPatient ;
 
 }

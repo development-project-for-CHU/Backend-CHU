@@ -16,7 +16,7 @@ public class PatientMapper {
                 .ville(patientDto.getVille())
                 .genre(patientDto.getGenre())
                 .createAt(patientDto.getCreateAt())
-                .createAt(patientDto.getUpdateAt())
+                .updateAt(patientDto.getUpdateAt())
                 .build();
     }
 

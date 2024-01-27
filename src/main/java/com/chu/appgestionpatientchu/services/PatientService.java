@@ -1,6 +1,7 @@
 package com.chu.appgestionpatientchu.services;
 
 
+import com.chu.appgestionpatientchu.domain.DossierPatient;
 import com.chu.appgestionpatientchu.domain.Patient;
 import com.chu.appgestionpatientchu.dto.PatientDto;
 import com.chu.appgestionpatientchu.mappers.PatientMapper;
@@ -23,6 +24,10 @@ public class PatientService {
         patientDto.setCreateAt(new Date(System.currentTimeMillis()));
         patientDto.setUpdateAt(new Date(System.currentTimeMillis()));
         Patient patient = PatientMapper.mapToPatient(patientDto);
+        DossierPatient dossierPatient = DossierPatient.builder()
+                .dateCreation(new Date(System.currentTimeMillis()))
+                .build();
+        patient.setDossierPatient(dossierPatient);
         Patient savedPatient =  patientRepository.save(patient);
 
         return PatientMapper.mapToDto(savedPatient);

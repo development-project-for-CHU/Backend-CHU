@@ -7,8 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
+@NoArgsConstructor(force = true)
+
 @Builder
 @Entity
 @Table(name = "ANAMNESE")
