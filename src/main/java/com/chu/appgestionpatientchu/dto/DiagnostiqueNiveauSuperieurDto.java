@@ -24,6 +24,14 @@ public class DiagnostiqueNiveauSuperieurDto {
 
     private Date addedAt;
 
-    private List<PartieSpecialiseDto> listPartieSpecialise ;
+    private List<Long> listIdPartieSpecialise ;
+
+    public boolean getIsPassedToCommune() {
+        return isPassedToCommune;
+    }
+
+    public void setIsPassedToCommune(boolean passedToCommune) {
+        isPassedToCommune = passedToCommune;
+    }
 
 }

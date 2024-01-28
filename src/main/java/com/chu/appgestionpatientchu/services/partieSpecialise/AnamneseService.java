@@ -26,8 +26,8 @@ public class AnamneseService {
     private final AnamneseRepository anamneseRepository;
 
 
-    public List<AnamneseDto> saveAll(List<AnamneseDto> allergies){
-        List<Anamnese> anamneseList = allergies.stream().map(MapperAnamnese::mapToAnamnese).collect(Collectors.toList());
+    public List<AnamneseDto> saveAll(List<AnamneseDto> anamnese){
+        List<Anamnese> anamneseList = anamnese.stream().map(MapperAnamnese::mapToAnamnese).collect(Collectors.toList());
         List<Anamnese> savedAnamnese = this.anamneseRepository.saveAll(anamneseList);
         return savedAnamnese.stream()
                 .map(MapperAnamnese::mapToAnamneseDto)
@@ -74,12 +74,13 @@ public class AnamneseService {
 
     public AnamneseDto updateAnamnese(Long id , AnamneseDto updateAnamnese) throws EntityNotFoundException {
         return anamneseRepository.findAnamneseById(id)
-                .map(allergie -> {
-                    allergie.setNomAnamnese(updateAnamnese.getNomAnamnese());
-                    allergie.setAddedAt(updateAnamnese.getAddedAt());
+                .map(anamnese -> {
+                    anamnese.setNomAnamnese(updateAnamnese.getNomAnamnese());
+                    anamnese.setIsPassedToCommune(updateAnamnese.getIsPassedToCommune());
+                    anamnese.setAddedAt(updateAnamnese.getAddedAt());
 
                     return MapperAnamnese.mapToAnamneseDto(
-                            anamneseRepository.save(allergie)
+                            anamneseRepository.save(anamnese)
                     );
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Anamnese not found with id " + id));

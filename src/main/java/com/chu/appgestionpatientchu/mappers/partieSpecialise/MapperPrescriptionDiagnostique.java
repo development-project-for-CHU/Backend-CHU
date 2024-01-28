@@ -22,6 +22,7 @@ public class MapperPrescriptionDiagnostique {
         return PrescriptionDiagnostiqueDto.builder()
                 .nomPrescriptionDiagnostique(prescriptionDiagnostique.getNomPrescriptionDiagnostique())
                 .id(prescriptionDiagnostique.getId())
+                .isPassedToCommune(prescriptionDiagnostique.getIsPassedToCommune())
                 .addedAt(prescriptionDiagnostique.getAddedAt())
                 .listIdPartieSpecialise(
                         prescriptionDiagnostique.getListPartieSpecialise() != null ?

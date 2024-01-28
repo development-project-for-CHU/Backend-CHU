@@ -29,4 +29,11 @@ public class ExamenClinique {
     @NonNull
     private boolean isDeleted  ;
 
+    public void setIsPassedToCommune(boolean passedToCommune) {
+        isPassedToCommune = passedToCommune;
+    }
+
+    public boolean getIsPassedToCommune() {
+        return isPassedToCommune;
+    }
 }

@@ -75,6 +75,7 @@ public class ExamenCliniqueService {
         return examenCliniqueRepository.findExamenCliniqueById(id)
                 .map(examenClinique -> {
                     examenClinique.setNomExamenClinique(updateExamenClinique.getNomExamenClinique());
+                    examenClinique.setIsPassedToCommune(updateExamenClinique.getIsPassedToCommune());
                     examenClinique.setAddedAt(updateExamenClinique.getAddedAt());
 
                     return MapperExamenClinique.mapToExamenCliniqueDto(

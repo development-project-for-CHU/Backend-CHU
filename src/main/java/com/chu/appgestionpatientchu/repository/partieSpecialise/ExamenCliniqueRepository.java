@@ -1,7 +1,7 @@
 package com.chu.appgestionpatientchu.repository.partieSpecialise;
 
 
-import com.chu.appgestionpatientchu.domain.Anamnese;
+
 import com.chu.appgestionpatientchu.domain.ExamenClinique;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

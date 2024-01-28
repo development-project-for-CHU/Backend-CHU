@@ -26,6 +26,7 @@ public class MapperAnamnese {
         return AnamneseDto.builder()
                 .nomAnamnese(anamnese.getNomAnamnese())
                 .id(anamnese.getId())
+                .isPassedToCommune(anamnese.getIsPassedToCommune())
                 .addedAt(anamnese.getAddedAt())
                 .listIdPartieSpecialise(
                         anamnese.getListPartieSpecialise() != null ?

@@ -77,6 +77,7 @@ public class PrescriptionDiagnostiqueService {
         return prescriptionDiagnostiqueRepository.findPrescriptionDiagnostiqueById(id)
                 .map(prescriptionDiagnostique -> {
                     prescriptionDiagnostique.setNomPrescriptionDiagnostique(updatePrescriptionDiagnostique.getNomPrescriptionDiagnostique());
+                    prescriptionDiagnostique.setIsPassedToCommune(updatePrescriptionDiagnostique.getIsPassedToCommune());
                     prescriptionDiagnostique.setAddedAt(updatePrescriptionDiagnostique.getAddedAt());
 
                     return MapperPrescriptionDiagnostique.mapToPrescriptionDiagnostiqueDto(

@@ -1,10 +1,7 @@
 package com.chu.appgestionpatientchu.dto;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -25,6 +22,13 @@ public class PrescriptionTherapeutiqueDto {
 
 
     private Date addedAt;
-    private List<PartieSpecialiseDto> listPartieSpecialise ;
+    private List<Long> listIdPartieSpecialise ;
 
+    public boolean getIsPassedToCommune() {
+        return isPassedToCommune;
+    }
+
+    public void setIsPassedToCommune(boolean passedToCommune) {
+        isPassedToCommune = passedToCommune;
+    }
 }

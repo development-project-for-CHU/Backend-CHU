@@ -24,6 +24,17 @@ public class Surveillance {
     @ManyToMany
     private List<PartieSpecialise> listPartieSpecialise ;
 
+    @NonNull
+    private boolean isDeleted  ;
+
+    public boolean getIsPassedToCommune() {
+        return isPassedToCommune;
+    }
+
+    public void setIsPassedToCommune(boolean passedToCommune) {
+        isPassedToCommune = passedToCommune;
+    }
+
 
 
 }

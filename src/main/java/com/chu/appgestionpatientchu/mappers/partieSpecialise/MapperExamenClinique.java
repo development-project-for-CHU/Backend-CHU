@@ -22,6 +22,7 @@ public class MapperExamenClinique {
         return ExamenCliniqueDto.builder()
                 .nomExamenClinique(examenClinique.getNomExamenClinique())
                 .id(examenClinique.getId())
+                .isPassedToCommune(examenClinique.getIsPassedToCommune())
                 .addedAt(examenClinique.getAddedAt())
                 .listIdPartieSpecialise(
                         examenClinique.getListPartieSpecialise() != null ?
