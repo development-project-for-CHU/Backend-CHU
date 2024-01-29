@@ -15,9 +15,9 @@ public interface DiagnostiqueNiveauSuperieurRepository extends JpaRepository<Dia
     Page findByIsDeletedFalse(Pageable page);
 
     Optional<DiagnostiqueNiveauSuperieur> findDiagnostiqueNiveauSuperieurById(Long id);
-    List<DiagnostiqueNiveauSuperieur> findByNomDiagnostiqueNiveauSuperieur(String nomDiagnostiqueNiveauSuperieur );
+    List<DiagnostiqueNiveauSuperieur> findByName(String name );
     List<DiagnostiqueNiveauSuperieur> findByAddedAt(LocalDate addedAt);
-    List<DiagnostiqueNiveauSuperieur> findByNomDiagnostiqueNiveauSuperieurAndAddedAt(String nomDiagnostiqueNiveauSuperieur , LocalDate addedAt);
+    List<DiagnostiqueNiveauSuperieur> findByNameAndAddedAt(String name , LocalDate addedAt);
 
 
 }

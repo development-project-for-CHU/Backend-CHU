@@ -13,7 +13,7 @@ public class MapperMedicationEncours {
 
     public static MedicationEncours mapToMedicationEncours(MedicationEncoursDto medicationEncoursDto) {
         return MedicationEncours.builder()
-                .nomMedicationEncours(medicationEncoursDto.getNomMedicament())
+                .name(medicationEncoursDto.getName())
                 .addedAt(new Date())
                 .isDeleted(false)
                 .build();
@@ -21,7 +21,7 @@ public class MapperMedicationEncours {
 
     public static MedicationEncoursDto mapToMedicationEncoursDto (MedicationEncours medicationEncours){
         return MedicationEncoursDto.builder()
-                .nomMedicament(medicationEncours.getNomMedicationEncours())
+                .name(medicationEncours.getName())
                 .id(medicationEncours.getId())
                 .addedAt(medicationEncours.getAddedAt())
                 .listIdPartieCommune(

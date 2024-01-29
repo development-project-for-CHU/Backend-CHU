@@ -16,7 +16,7 @@ public class MedicationEncours {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
-    private String nomMedicationEncours ;
+    private String name ;
     @Temporal(value = TemporalType.DATE)
     private Date addedAt ;
 

@@ -16,7 +16,7 @@ public interface ExamenCliniqueRepository extends JpaRepository<ExamenClinique, 
     Page findByIsDeletedFalse(Pageable page);
 
     Optional<ExamenClinique> findExamenCliniqueById(Long id);
-    List<ExamenClinique> findByNomExamenClinique(String nomExamenClinique );
+    List<ExamenClinique> findByName(String name );
     List<ExamenClinique> findByAddedAt(LocalDate addedAt);
-    List<ExamenClinique> findByNomExamenCliniqueAndAddedAt(String nomExamenClinique , LocalDate addedAt);
+    List<ExamenClinique> findByNameAndAddedAt(String name , LocalDate addedAt);
 }

@@ -49,12 +49,12 @@ public class PrescriptionTherapeutiqueService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return prescriptionTherapeutiqueRepository.findByNomPrescriptionTherapeutiqueAndAddedAt(name.get(), creationDate.get() )
+            return prescriptionTherapeutiqueRepository.findByNameAndAddedAt(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperPrescriptionTherapeutique::mapToPrescriptionTherapeutiqueDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return prescriptionTherapeutiqueRepository.findByNomPrescriptionTherapeutique(name.get())
+            return prescriptionTherapeutiqueRepository.findByName(name.get())
                     .stream()
                     .map(MapperPrescriptionTherapeutique::mapToPrescriptionTherapeutiqueDto)
                     .collect(Collectors.toList());
@@ -72,7 +72,7 @@ public class PrescriptionTherapeutiqueService {
     public PrescriptionTherapeutiqueDto updatePrescriptionTherapeutique(Long id , PrescriptionTherapeutiqueDto updatePrescriptionTherapeutique) throws EntityNotFoundException {
         return prescriptionTherapeutiqueRepository.findPrescriptionTherapeutiqueById(id)
                 .map(prescriptionTherapeutique -> {
-                    prescriptionTherapeutique.setNomPrescriptionTherapeutique(updatePrescriptionTherapeutique.getNomPrescriptionTherapeutique());
+                    prescriptionTherapeutique.setName(updatePrescriptionTherapeutique.getName());
                     prescriptionTherapeutique.setIsPassedToCommune(updatePrescriptionTherapeutique.getIsPassedToCommune());
                     prescriptionTherapeutique.setAddedAt(updatePrescriptionTherapeutique.getAddedAt());
 

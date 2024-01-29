@@ -17,7 +17,7 @@ public class PrescriptionTherapeutique {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomPrescriptionTherapeutique;
+    private String name;
     private boolean isSelected;
 
     private boolean isPassedToCommune;

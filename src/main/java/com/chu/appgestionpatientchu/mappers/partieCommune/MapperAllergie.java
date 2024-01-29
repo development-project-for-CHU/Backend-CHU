@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 public class MapperAllergie {
     public static Allergie mapToAllergie(AllergieDto allergieDto){
         return Allergie.builder()
-                .nomAllergie(allergieDto.getNomAllergie())
+                .name(allergieDto.getName())
                 .addedAt(new Date())
                 .isDeleted(false)
                 .build();
     }
     public static AllergieDto mapToAllergieDto (Allergie allergie){
         return AllergieDto.builder()
-                .nomAllergie(allergie.getNomAllergie())
+                .name(allergie.getName())
                 .id(allergie.getId())
                 .addedAt(allergie.getAddedAt())
                 .listIdPartieCommune(

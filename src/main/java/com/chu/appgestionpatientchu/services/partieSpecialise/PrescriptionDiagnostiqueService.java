@@ -52,12 +52,12 @@ public class PrescriptionDiagnostiqueService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return prescriptionDiagnostiqueRepository.findByNomPrescriptionDiagnostiqueAndAddedAt(name.get(), creationDate.get() )
+            return prescriptionDiagnostiqueRepository.findByNameAndAddedAt(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperPrescriptionDiagnostique::mapToPrescriptionDiagnostiqueDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return prescriptionDiagnostiqueRepository.findByNomPrescriptionDiagnostique(name.get())
+            return prescriptionDiagnostiqueRepository.findByName(name.get())
                     .stream()
                     .map(MapperPrescriptionDiagnostique::mapToPrescriptionDiagnostiqueDto)
                     .collect(Collectors.toList());
@@ -76,7 +76,7 @@ public class PrescriptionDiagnostiqueService {
     public PrescriptionDiagnostiqueDto updatePrescriptionDiagnostique(Long id ,PrescriptionDiagnostiqueDto updatePrescriptionDiagnostique) throws EntityNotFoundException {
         return prescriptionDiagnostiqueRepository.findPrescriptionDiagnostiqueById(id)
                 .map(prescriptionDiagnostique -> {
-                    prescriptionDiagnostique.setNomPrescriptionDiagnostique(updatePrescriptionDiagnostique.getNomPrescriptionDiagnostique());
+                    prescriptionDiagnostique.setName(updatePrescriptionDiagnostique.getName());
                     prescriptionDiagnostique.setIsPassedToCommune(updatePrescriptionDiagnostique.getIsPassedToCommune());
                     prescriptionDiagnostique.setAddedAt(updatePrescriptionDiagnostique.getAddedAt());
 

@@ -54,12 +54,12 @@ public class SurveillanceService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return surveillanceRepository.findByNomSurveillanceAndAddedAt(name.get(), creationDate.get() )
+            return surveillanceRepository.findByNameAndAddedAt(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperSurveillance::mapToSurveillanceDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return surveillanceRepository.findByNomSurveillance(name.get())
+            return surveillanceRepository.findByName(name.get())
                     .stream()
                     .map(MapperSurveillance::mapToSurveillanceDto)
                     .collect(Collectors.toList());
@@ -77,7 +77,7 @@ public class SurveillanceService {
     public SurveillanceDto updateSurveillance(Long id , SurveillanceDto updateSurveillance) throws EntityNotFoundException {
         return surveillanceRepository.findSurveillanceById(id)
                 .map(surveillance -> {
-                    surveillance.setNomSurveillance(updateSurveillance.getNomSurveillance());
+                    surveillance.setName(updateSurveillance.getName());
                     surveillance.setIsPassedToCommune(updateSurveillance.getIsPassedToCommune());
                     surveillance.setAddedAt(updateSurveillance.getAddedAt());
 

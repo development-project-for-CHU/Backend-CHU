@@ -19,7 +19,7 @@ public class AnamneseDto {
 
     private Long id;
 
-    private String nomAnamnese;
+    private String name;
 
     private boolean isPassedToCommune;
 

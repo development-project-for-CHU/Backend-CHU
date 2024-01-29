@@ -21,7 +21,7 @@ public class PartieSpecialiseDto {
     private List<AnamneseDto> listAnamnese;
 
 
-       private List<ExamenCliniqueDto> listExamenClinique;
+    private List<ExamenCliniqueDto> listExamenClinique;
     private List<PrescriptionDiagnostiqueDto> listPrescriptionDiagnostique;
     private List<DiagnostiqueNiveauSuperieurDto> listDiagnostiqueNiveauSuperieur;
     private List<PrescriptionTherapeutiqueDto> listPrescriptionTherapeutique;

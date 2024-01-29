@@ -13,14 +13,14 @@ public class MapperSurveillance {
 
     public static Surveillance mapToSurveillance(SurveillanceDto surveillanceDto){
         return Surveillance.builder()
-                .nomSurveillance(surveillanceDto.getNomSurveillance())
+                .name(surveillanceDto.getName())
                 .addedAt(new Date())
                 .isPassedToCommune(false)
                 .build();
     }
     public static SurveillanceDto mapToSurveillanceDto(Surveillance surveillance){
         return SurveillanceDto.builder()
-                .nomSurveillance(surveillance.getNomSurveillance())
+                .name(surveillance.getName())
                 .id(surveillance.getId())
                 .isPassedToCommune(surveillance.getIsPassedToCommune())
                 .addedAt(surveillance.getAddedAt())

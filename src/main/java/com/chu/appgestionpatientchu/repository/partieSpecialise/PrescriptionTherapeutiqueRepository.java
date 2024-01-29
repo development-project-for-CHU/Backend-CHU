@@ -15,8 +15,8 @@ public interface PrescriptionTherapeutiqueRepository extends JpaRepository<Presc
     Page findByIsDeletedFalse(Pageable page);
 
     Optional<PrescriptionTherapeutique> findPrescriptionTherapeutiqueById(Long id);
-    List<PrescriptionTherapeutique> findByNomPrescriptionTherapeutique(String nomPrescriptionTherapeutique );
+    List<PrescriptionTherapeutique> findByName(String name );
     List<PrescriptionTherapeutique> findByAddedAt(LocalDate addedAt);
-    List<PrescriptionTherapeutique> findByNomPrescriptionTherapeutiqueAndAddedAt(String nomPrescriptionTherapeutique , LocalDate addedAt);
+    List<PrescriptionTherapeutique> findByNameAndAddedAt(String name , LocalDate addedAt);
 
 }

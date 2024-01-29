@@ -16,7 +16,7 @@ public interface PrescriptionDiagnostiqueRepository extends JpaRepository<Prescr
     Page findByIsDeletedFalse(Pageable page);
 
     Optional<PrescriptionDiagnostique> findPrescriptionDiagnostiqueById(Long id);
-    List<PrescriptionDiagnostique> findByNomPrescriptionDiagnostique(String nomPrescriptionDiagnostique );
+    List<PrescriptionDiagnostique> findByName(String name );
     List<PrescriptionDiagnostique> findByAddedAt(LocalDate addedAt);
-    List<PrescriptionDiagnostique> findByNomPrescriptionDiagnostiqueAndAddedAt(String nomPrescriptionDiagnostique , LocalDate addedAt);
+    List<PrescriptionDiagnostique> findByNameAndAddedAt(String name , LocalDate addedAt);
 }

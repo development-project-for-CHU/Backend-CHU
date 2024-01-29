@@ -43,12 +43,12 @@ public class AllergieService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return allergieRepository.findByNomAllergieAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
+            return allergieRepository.findByNameAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperAllergie::mapToAllergieDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return allergieRepository.findByNomAllergieAndIsDeletedFalse(name.get())
+            return allergieRepository.findByNameAndIsDeletedFalse(name.get())
                     .stream()
                     .map(MapperAllergie::mapToAllergieDto)
                     .collect(Collectors.toList());
@@ -66,7 +66,7 @@ public class AllergieService {
     public AllergieDto updateAllergie(Long id , AllergieDto updateAllergie) throws EntityNotFoundException {
         return allergieRepository.findAllergieByIdAndIsDeletedFalse(id)
                 .map(allergie -> {
-                    allergie.setNomAllergie(updateAllergie.getNomAllergie());
+                    allergie.setName(updateAllergie.getName());
                     allergie.setAddedAt(updateAllergie.getAddedAt());
 
                     return MapperAllergie.mapToAllergieDto(

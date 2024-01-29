@@ -17,7 +17,7 @@ import java.util.List;
 public class SpecialiteDto {
 
     private Long id ;
-    private String nomSpecialite ;
+    private String name ;
 
     private Date addedAt;
 

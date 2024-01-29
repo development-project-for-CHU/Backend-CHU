@@ -17,7 +17,7 @@ public class DiagnostiqueNiveauSuperieurDto {
 
     private Long id;
 
-    private String nomDiagnostiqueNiveauSuperieur;
+    private String name;
 
     private boolean isPassedToCommune;
 

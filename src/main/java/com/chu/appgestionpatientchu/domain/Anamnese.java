@@ -18,7 +18,7 @@ public class Anamnese {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomAnamnese;
+    private String name;
 
     private boolean isPassedToCommune;
     @Temporal(value = TemporalType.DATE)

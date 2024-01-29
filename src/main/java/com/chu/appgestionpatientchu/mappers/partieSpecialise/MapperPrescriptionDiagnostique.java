@@ -13,14 +13,14 @@ public class MapperPrescriptionDiagnostique {
 
     public static PrescriptionDiagnostique mapToPrescriptionDiagnostique(PrescriptionDiagnostiqueDto prescriptionDiagnostiqueDto){
         return PrescriptionDiagnostique.builder()
-                .nomPrescriptionDiagnostique(prescriptionDiagnostiqueDto.getNomPrescriptionDiagnostique())
+                .name(prescriptionDiagnostiqueDto.getName())
                 .addedAt(new Date())
                 .isPassedToCommune(false)
                 .build();
     }
     public static PrescriptionDiagnostiqueDto mapToPrescriptionDiagnostiqueDto(PrescriptionDiagnostique prescriptionDiagnostique){
         return PrescriptionDiagnostiqueDto.builder()
-                .nomPrescriptionDiagnostique(prescriptionDiagnostique.getNomPrescriptionDiagnostique())
+                .name(prescriptionDiagnostique.getName())
                 .id(prescriptionDiagnostique.getId())
                 .isPassedToCommune(prescriptionDiagnostique.getIsPassedToCommune())
                 .addedAt(prescriptionDiagnostique.getAddedAt())

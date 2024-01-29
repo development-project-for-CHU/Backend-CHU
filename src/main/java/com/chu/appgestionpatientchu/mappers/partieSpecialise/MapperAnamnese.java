@@ -17,14 +17,14 @@ public class MapperAnamnese {
 
     public static Anamnese mapToAnamnese(AnamneseDto anamneseDto){
         return Anamnese.builder()
-                .nomAnamnese(anamneseDto.getNomAnamnese())
+                .name(anamneseDto.getName())
                 .addedAt(new Date())
                 .isPassedToCommune(false)
                 .build();
     }
     public static AnamneseDto mapToAnamneseDto(Anamnese anamnese){
         return AnamneseDto.builder()
-                .nomAnamnese(anamnese.getNomAnamnese())
+                .name(anamnese.getName())
                 .id(anamnese.getId())
                 .isPassedToCommune(anamnese.getIsPassedToCommune())
                 .addedAt(anamnese.getAddedAt())

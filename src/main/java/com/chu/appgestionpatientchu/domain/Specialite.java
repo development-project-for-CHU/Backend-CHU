@@ -19,7 +19,7 @@ public class Specialite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
-    private String nomSpecialite ;
+    private String name ;
     @Temporal(value = TemporalType.DATE)
     private Date addedAt;
     @ManyToMany(mappedBy = "listSpecialite")

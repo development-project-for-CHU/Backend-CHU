@@ -14,7 +14,7 @@ public class MapperDiagnostiqueConnue {
 
     public static DiagnostiqueConnue mapToDiagnostiqueConnue(DiagnostiqueConnueDto diagnostiqueConnueDto) {
         return DiagnostiqueConnue.builder()
-                .nomDiagnostiqueConnue(diagnostiqueConnueDto.getNomDiagnostiqueConnue())
+                .name(diagnostiqueConnueDto.getName())
                 .addedAt(new Date())
                 .isDeleted(false)
                 .build();
@@ -22,7 +22,7 @@ public class MapperDiagnostiqueConnue {
 
     public static DiagnostiqueConnueDto mapToDiagnostiqueConnueDto (DiagnostiqueConnue diagnostiqueConnue){
         return DiagnostiqueConnueDto.builder()
-                .nomDiagnostiqueConnue(diagnostiqueConnue.getNomDiagnostiqueConnue())
+                .name(diagnostiqueConnue.getName())
                 .id(diagnostiqueConnue.getId())
                 .addedAt(diagnostiqueConnue.getAddedAt())
                 .listIdPartieCommune(

@@ -16,7 +16,7 @@ import java.util.List;
 public class SurveillanceDto {
 
     private Long id;
-    private String nomSurveillance;
+    private String name;
 
     private boolean isPassedToCommune;
 

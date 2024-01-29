@@ -14,8 +14,8 @@ public interface SurveillanceRepository  extends JpaRepository<Surveillance, Lon
     Page findByIsDeletedFalse(Pageable page);
 
     Optional<Surveillance> findSurveillanceById(Long id);
-    List<Surveillance> findByNomSurveillance(String nomSurveillance );
+    List<Surveillance> findByName(String name );
     List<Surveillance> findByAddedAt(LocalDate addedAt);
-    List<Surveillance> findByNomSurveillanceAndAddedAt(String nomSurveillance , LocalDate addedAt);
+    List<Surveillance> findByNameAndAddedAt(String name , LocalDate addedAt);
 
 }

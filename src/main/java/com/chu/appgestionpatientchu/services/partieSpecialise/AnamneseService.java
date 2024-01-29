@@ -52,12 +52,12 @@ public class AnamneseService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return anamneseRepository.findByNomAnamneseAndAddedAt(name.get(), creationDate.get() )
+            return anamneseRepository.findByNameAndAddedAt(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperAnamnese::mapToAnamneseDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return anamneseRepository.findByNomAnamnese(name.get())
+            return anamneseRepository.findByName(name.get())
                     .stream()
                     .map(MapperAnamnese::mapToAnamneseDto)
                     .collect(Collectors.toList());
@@ -75,7 +75,7 @@ public class AnamneseService {
     public AnamneseDto updateAnamnese(Long id , AnamneseDto updateAnamnese) throws EntityNotFoundException {
         return anamneseRepository.findAnamneseById(id)
                 .map(anamnese -> {
-                    anamnese.setNomAnamnese(updateAnamnese.getNomAnamnese());
+                    anamnese.setName(updateAnamnese.getName());
                     anamnese.setIsPassedToCommune(updateAnamnese.getIsPassedToCommune());
                     anamnese.setAddedAt(updateAnamnese.getAddedAt());
 

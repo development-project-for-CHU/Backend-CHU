@@ -50,12 +50,12 @@ public class DiagnostiqueNiveauSuperieurService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return diagnostiqueNiveauSuperieurRepository.findByNomDiagnostiqueNiveauSuperieurAndAddedAt(name.get(), creationDate.get() )
+            return diagnostiqueNiveauSuperieurRepository.findByNameAndAddedAt(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperDiagnostiqueNiveauSuperieur::mapToDiagnostiqueNiveauSuperieurDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return diagnostiqueNiveauSuperieurRepository.findByNomDiagnostiqueNiveauSuperieur(name.get())
+            return diagnostiqueNiveauSuperieurRepository.findByName(name.get())
                     .stream()
                     .map(MapperDiagnostiqueNiveauSuperieur::mapToDiagnostiqueNiveauSuperieurDto)
                     .collect(Collectors.toList());
@@ -73,7 +73,7 @@ public class DiagnostiqueNiveauSuperieurService {
     public DiagnostiqueNiveauSuperieurDto updateDiagnostiqueNiveauSuperieur(Long id , DiagnostiqueNiveauSuperieurDto updateDiagnostiqueNiveauSuperieur) throws EntityNotFoundException {
         return diagnostiqueNiveauSuperieurRepository.findDiagnostiqueNiveauSuperieurById(id)
                 .map(diagnostiqueNiveauSuperieur -> {
-                    diagnostiqueNiveauSuperieur.setNomDiagnostiqueNiveauSuperieur(updateDiagnostiqueNiveauSuperieur.getNomDiagnostiqueNiveauSuperieur());
+                    diagnostiqueNiveauSuperieur.setName(updateDiagnostiqueNiveauSuperieur.getName());
                     diagnostiqueNiveauSuperieur.setIsPassedToCommune(updateDiagnostiqueNiveauSuperieur.getIsPassedToCommune());
                     diagnostiqueNiveauSuperieur.setAddedAt(updateDiagnostiqueNiveauSuperieur.getAddedAt());
 

@@ -16,9 +16,9 @@ public interface AnamneseRepository extends JpaRepository<Anamnese, Long> {
     Page findByIsDeletedFalse(Pageable page);
 
     Optional<Anamnese> findAnamneseById(Long id);
-    List<Anamnese> findByNomAnamnese(String nomAnamnese );
+    List<Anamnese> findByName(String name );
     List<Anamnese> findByAddedAt(LocalDate addedAt);
-    List<Anamnese> findByNomAnamneseAndAddedAt(String nomAnamnese , LocalDate addedAt);
+    List<Anamnese> findByNameAndAddedAt(String name , LocalDate addedAt);
 
 
 }

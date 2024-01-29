@@ -16,7 +16,7 @@ public class ExamenClinique {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomExamenClinique;
+    private String name;
 
 
     private boolean isPassedToCommune;

@@ -17,7 +17,7 @@ public class DiagnostiqueNiveauSuperieur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomDiagnostiqueNiveauSuperieur;
+    private String name;
 
     private boolean isPassedToCommune;
 

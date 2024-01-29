@@ -13,14 +13,14 @@ public class MapperDiagnostiqueNiveauSuperieur {
 
     public static DiagnostiqueNiveauSuperieur mapToDiagnostiqueNiveauSuperieur(DiagnostiqueNiveauSuperieurDto diagnostiqueNiveauSuperieurDto){
         return DiagnostiqueNiveauSuperieur.builder()
-                .nomDiagnostiqueNiveauSuperieur(diagnostiqueNiveauSuperieurDto.getNomDiagnostiqueNiveauSuperieur())
+                .name(diagnostiqueNiveauSuperieurDto.getName())
                 .addedAt(new Date())
                 .isPassedToCommune(false)
                 .build();
     }
     public static DiagnostiqueNiveauSuperieurDto mapToDiagnostiqueNiveauSuperieurDto(DiagnostiqueNiveauSuperieur diagnostiqueNiveauSuperieur){
         return DiagnostiqueNiveauSuperieurDto.builder()
-                .nomDiagnostiqueNiveauSuperieur(diagnostiqueNiveauSuperieur.getNomDiagnostiqueNiveauSuperieur())
+                .name(diagnostiqueNiveauSuperieur.getName())
                 .id(diagnostiqueNiveauSuperieur.getId())
                 .isPassedToCommune(diagnostiqueNiveauSuperieur.getIsPassedToCommune())
                 .addedAt(diagnostiqueNiveauSuperieur.getAddedAt())

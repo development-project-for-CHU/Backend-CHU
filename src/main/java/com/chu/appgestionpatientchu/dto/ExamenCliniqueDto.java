@@ -17,7 +17,7 @@ public class ExamenCliniqueDto {
 
     private Long id;
 
-    private String nomExamenClinique;
+    private String name;
 
 
     private boolean isPassedToCommune;

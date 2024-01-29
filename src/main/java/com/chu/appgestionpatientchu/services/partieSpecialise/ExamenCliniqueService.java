@@ -51,12 +51,12 @@ public class ExamenCliniqueService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return examenCliniqueRepository.findByNomExamenCliniqueAndAddedAt(name.get(), creationDate.get() )
+            return examenCliniqueRepository.findByNameAndAddedAt(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperExamenClinique::mapToExamenCliniqueDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return examenCliniqueRepository.findByNomExamenClinique(name.get())
+            return examenCliniqueRepository.findByName(name.get())
                     .stream()
                     .map(MapperExamenClinique::mapToExamenCliniqueDto)
                     .collect(Collectors.toList());
@@ -74,7 +74,7 @@ public class ExamenCliniqueService {
     public ExamenCliniqueDto updateExamenClinique(Long id ,ExamenCliniqueDto updateExamenClinique) throws EntityNotFoundException {
         return examenCliniqueRepository.findExamenCliniqueById(id)
                 .map(examenClinique -> {
-                    examenClinique.setNomExamenClinique(updateExamenClinique.getNomExamenClinique());
+                    examenClinique.setName(updateExamenClinique.getName());
                     examenClinique.setIsPassedToCommune(updateExamenClinique.getIsPassedToCommune());
                     examenClinique.setAddedAt(updateExamenClinique.getAddedAt());
 

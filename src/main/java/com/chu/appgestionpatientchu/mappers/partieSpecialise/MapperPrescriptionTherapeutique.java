@@ -12,14 +12,14 @@ public class MapperPrescriptionTherapeutique {
 
     public static PrescriptionTherapeutique mapToPrescriptionTherapeutique(PrescriptionTherapeutiqueDto prescriptionTherapeutiqueDto){
         return PrescriptionTherapeutique.builder()
-                .nomPrescriptionTherapeutique(prescriptionTherapeutiqueDto.getNomPrescriptionTherapeutique())
+                .name(prescriptionTherapeutiqueDto.getName())
                 .addedAt(new Date())
                 .isPassedToCommune(false)
                 .build();
     }
     public static PrescriptionTherapeutiqueDto mapToPrescriptionTherapeutiqueDto(PrescriptionTherapeutique prescriptionTherapeutique){
         return PrescriptionTherapeutiqueDto.builder()
-                .nomPrescriptionTherapeutique(prescriptionTherapeutique.getNomPrescriptionTherapeutique())
+                .name(prescriptionTherapeutique.getName())
                 .id(prescriptionTherapeutique.getId())
 
 

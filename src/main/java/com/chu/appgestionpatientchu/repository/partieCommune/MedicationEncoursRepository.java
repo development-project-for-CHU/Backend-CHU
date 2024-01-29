@@ -15,9 +15,9 @@ public interface MedicationEncoursRepository extends JpaRepository<MedicationEnc
     Page findByIsDeletedFalse(Pageable page);
 
     Optional<MedicationEncours> findMedicationEncoursByIdAndIsDeletedFalse(Long id);
-    List<MedicationEncours> findByNomMedicationEncoursAndIsDeletedFalse(String nomMedicationEncours );
+    List<MedicationEncours> findByNameAndIsDeletedFalse(String name );
     List<MedicationEncours> findByAddedAtAndIsDeletedFalse(LocalDate addedAt);
-    List<MedicationEncours> findByNomMedicationEncoursAndAddedAtAndIsDeletedFalse(String nomMedicationEncours, LocalDate addedAt);
+    List<MedicationEncours> findByNameAndAddedAtAndIsDeletedFalse(String name, LocalDate addedAt);
 
 
 }
