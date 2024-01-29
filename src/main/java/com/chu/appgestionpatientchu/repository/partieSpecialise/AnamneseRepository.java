@@ -2,6 +2,7 @@ package com.chu.appgestionpatientchu.repository.partieSpecialise;
 
 
 
+import com.chu.appgestionpatientchu.domain.Allergie;
 import com.chu.appgestionpatientchu.domain.Anamnese;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,10 +16,12 @@ public interface AnamneseRepository extends JpaRepository<Anamnese, Long> {
 
     Page findByIsDeletedFalse(Pageable page);
 
-    Optional<Anamnese> findAnamneseById(Long id);
-    List<Anamnese> findByName(String name );
-    List<Anamnese> findByAddedAt(LocalDate addedAt);
-    List<Anamnese> findByNameAndAddedAt(String name , LocalDate addedAt);
+
+    Optional<Anamnese> findAnamneseByIdAndIsDeletedFalse(Long id);
+    List<Anamnese> findByNameAndIsDeletedFalse(String name );
+    List<Anamnese> findByAddedAtAndIsDeletedFalse(LocalDate addedAt);
+    List<Anamnese> findByNameAndAddedAtAndIsDeletedFalse(String name, LocalDate addedAt);
+
 
 
 }

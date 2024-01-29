@@ -1,13 +1,9 @@
 package com.chu.appgestionpatientchu.services.partieSpecialise;
 
 
-import com.chu.appgestionpatientchu.domain.Anamnese;
 import com.chu.appgestionpatientchu.domain.Surveillance;
-import com.chu.appgestionpatientchu.dto.AnamneseDto;
 import com.chu.appgestionpatientchu.dto.SurveillanceDto;
-import com.chu.appgestionpatientchu.mappers.partieSpecialise.MapperAnamnese;
 import com.chu.appgestionpatientchu.mappers.partieSpecialise.MapperSurveillance;
-import com.chu.appgestionpatientchu.repository.partieSpecialise.AnamneseRepository;
 import com.chu.appgestionpatientchu.repository.partieSpecialise.SurveillanceRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -54,17 +50,17 @@ public class SurveillanceService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return surveillanceRepository.findByNameAndAddedAt(name.get(), creationDate.get() )
+            return surveillanceRepository.findByNameAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperSurveillance::mapToSurveillanceDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return surveillanceRepository.findByName(name.get())
+            return surveillanceRepository.findByNameAndIsDeletedFalse(name.get())
                     .stream()
                     .map(MapperSurveillance::mapToSurveillanceDto)
                     .collect(Collectors.toList());
         } else if (creationDate.isPresent()) {
-            return surveillanceRepository.findByAddedAt(creationDate.get())
+            return surveillanceRepository.findByAddedAtAndIsDeletedFalse(creationDate.get())
                     .stream()
                     .map(MapperSurveillance::mapToSurveillanceDto)
                     .collect(Collectors.toList());
@@ -75,7 +71,7 @@ public class SurveillanceService {
     }
 
     public SurveillanceDto updateSurveillance(Long id , SurveillanceDto updateSurveillance) throws EntityNotFoundException {
-        return surveillanceRepository.findSurveillanceById(id)
+        return surveillanceRepository.findSurveillanceByIdAndIsDeletedFalse(id)
                 .map(surveillance -> {
                     surveillance.setName(updateSurveillance.getName());
                     surveillance.setIsPassedToCommune(updateSurveillance.getIsPassedToCommune());
@@ -83,6 +79,19 @@ public class SurveillanceService {
 
                     return MapperSurveillance.mapToSurveillanceDto(
                             surveillanceRepository.save(surveillance)
+                    );
+                })
+                .orElseThrow(() -> new EntityNotFoundException("Surveillance not found with id " + id));
+    }
+
+
+    public SurveillanceDto deleteSurveillance(Long id) throws EntityNotFoundException  {
+        return surveillanceRepository.findSurveillanceByIdAndIsDeletedFalse(id )
+                .map(anamnese  -> {
+                    anamnese.setDeleted(true);
+
+                    return MapperSurveillance.mapToSurveillanceDto(
+                            surveillanceRepository.save(anamnese)
                     );
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Surveillance not found with id " + id));

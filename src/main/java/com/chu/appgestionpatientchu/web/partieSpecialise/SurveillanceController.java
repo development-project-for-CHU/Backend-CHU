@@ -2,6 +2,7 @@ package com.chu.appgestionpatientchu.web.partieSpecialise;
 
 
 import com.chu.appgestionpatientchu.dto.AnamneseDto;
+import com.chu.appgestionpatientchu.dto.PrescriptionTherapeutiqueDto;
 import com.chu.appgestionpatientchu.dto.SearchSurveillanceRequest;
 import com.chu.appgestionpatientchu.dto.SurveillanceDto;
 import com.chu.appgestionpatientchu.exceptions.EmptyParamArrayException;
@@ -62,6 +63,13 @@ public class SurveillanceController {
     ){
         SurveillanceDto updatedSurveillance = this.surveillanceService.updateSurveillance(id ,surveillanceDto);
         return new ResponseEntity<>(updatedSurveillance , HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> deleteSurveillance(@PathVariable Long id) {
+        SurveillanceDto deleteSurveillance=  surveillanceService.deleteSurveillance(id);
+        return new ResponseEntity<>(deleteSurveillance.getId() , HttpStatus.OK);
     }
 
 

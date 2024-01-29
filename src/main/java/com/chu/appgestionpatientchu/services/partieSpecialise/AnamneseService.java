@@ -52,17 +52,17 @@ public class AnamneseService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return anamneseRepository.findByNameAndAddedAt(name.get(), creationDate.get() )
+            return anamneseRepository.findByNameAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperAnamnese::mapToAnamneseDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return anamneseRepository.findByName(name.get())
+            return anamneseRepository.findByNameAndIsDeletedFalse(name.get())
                     .stream()
                     .map(MapperAnamnese::mapToAnamneseDto)
                     .collect(Collectors.toList());
         } else if (creationDate.isPresent()) {
-            return anamneseRepository.findByAddedAt(creationDate.get())
+            return anamneseRepository.findByAddedAtAndIsDeletedFalse(creationDate.get())
                     .stream()
                     .map(MapperAnamnese::mapToAnamneseDto)
                     .collect(Collectors.toList());
@@ -73,7 +73,7 @@ public class AnamneseService {
     }
 
     public AnamneseDto updateAnamnese(Long id , AnamneseDto updateAnamnese) throws EntityNotFoundException {
-        return anamneseRepository.findAnamneseById(id)
+        return anamneseRepository.findAnamneseByIdAndIsDeletedFalse(id)
                 .map(anamnese -> {
                     anamnese.setName(updateAnamnese.getName());
                     anamnese.setIsPassedToCommune(updateAnamnese.getIsPassedToCommune());
@@ -87,7 +87,7 @@ public class AnamneseService {
     }
 
 
-/*    public AnamneseDto deleteAnamnese(Long id) throws EntityNotFoundException  {
+    public AnamneseDto deleteAnamnese(Long id) throws EntityNotFoundException  {
         return anamneseRepository.findAnamneseByIdAndIsDeletedFalse(id )
                 .map(anamnese  -> {
                     anamnese.setDeleted(true);
@@ -100,5 +100,5 @@ public class AnamneseService {
     }
 
 
- */
+
 }

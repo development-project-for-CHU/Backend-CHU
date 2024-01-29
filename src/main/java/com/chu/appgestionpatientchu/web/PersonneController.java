@@ -2,6 +2,8 @@ package com.chu.appgestionpatientchu.web;
 
 import com.chu.appgestionpatientchu.domain.Personne;
 import com.chu.appgestionpatientchu.services.PersonneService;
+import com.chu.appgestionpatientchu.utils.enums.Genders;
+import com.chu.appgestionpatientchu.utils.enums.Roles;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -71,6 +75,17 @@ public class PersonneController {
         }
     }
 
+
+    @GetMapping("/count-roles")
+    public Map<String, Long> countRoles() {
+        Map<Roles, Long> rolesCountMap = personneService.countAdminAndChefDeServiceAndMedcinAndInfirmier();
+
+
+        Map<String, Long> result = rolesCountMap.entrySet().stream()
+                .collect(Collectors.toMap(entry -> entry.getKey().toString(), Map.Entry::getValue));
+
+        return result;
+    }
 
 
 

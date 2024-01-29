@@ -34,4 +34,9 @@ public class PartieCommune {
     @JoinTable(name = "MEDICATION_ENCOURS_PARTIE_COMMUNE")
     private List<MedicationEncours> listMedicationEncours ;
     private boolean grossesFemme ;
+
+    private String specificite;
+
+
+
 }

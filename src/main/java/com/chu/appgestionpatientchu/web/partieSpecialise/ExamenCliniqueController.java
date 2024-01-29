@@ -1,6 +1,7 @@
 package com.chu.appgestionpatientchu.web.partieSpecialise;
 
 
+import com.chu.appgestionpatientchu.dto.AnamneseDto;
 import com.chu.appgestionpatientchu.dto.ExamenCliniqueDto;
 import com.chu.appgestionpatientchu.dto.SearchExamenCliniqueRequest;
 import com.chu.appgestionpatientchu.exceptions.EmptyParamArrayException;
@@ -63,6 +64,14 @@ public class ExamenCliniqueController {
     ){
         ExamenCliniqueDto updatedExamenClinique = this.examenCliniqueService.updateExamenClinique(id , examenCliniqueDto);
         return new ResponseEntity<>(updatedExamenClinique , HttpStatus.OK);
+    }
+
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> deleteExamenClinique(@PathVariable Long id) {
+        ExamenCliniqueDto deleteExamenClinique =  examenCliniqueService.deleteExamenClinique(id);
+        return new ResponseEntity<>(deleteExamenClinique.getId() , HttpStatus.OK);
     }
 
 

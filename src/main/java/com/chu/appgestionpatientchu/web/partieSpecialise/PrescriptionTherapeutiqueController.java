@@ -2,6 +2,7 @@ package com.chu.appgestionpatientchu.web.partieSpecialise;
 
 
 
+import com.chu.appgestionpatientchu.dto.PrescriptionDiagnostiqueDto;
 import com.chu.appgestionpatientchu.dto.PrescriptionTherapeutiqueDto;
 import com.chu.appgestionpatientchu.dto.SearchPrescriptionTherapeutiqueRequest;
 import com.chu.appgestionpatientchu.exceptions.EmptyParamArrayException;
@@ -61,6 +62,12 @@ public class PrescriptionTherapeutiqueController {
     ){
         PrescriptionTherapeutiqueDto updatedPrescriptionTherapeutique = this.prescriptionTherapeutiqueService.updatePrescriptionTherapeutique(id ,prescriptionTherapeutiqueDto);
         return new ResponseEntity<>(updatedPrescriptionTherapeutique , HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> deletePrescriptionTherapeutique(@PathVariable Long id) {
+        PrescriptionTherapeutiqueDto deletePrescriptionTherapeutique=  prescriptionTherapeutiqueService.deletePrescriptionTherapeutique(id);
+        return new ResponseEntity<>(deletePrescriptionTherapeutique.getId() , HttpStatus.OK);
     }
 
 }

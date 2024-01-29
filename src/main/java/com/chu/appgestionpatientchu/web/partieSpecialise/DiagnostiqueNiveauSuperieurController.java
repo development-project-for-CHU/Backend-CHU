@@ -1,6 +1,7 @@
 package com.chu.appgestionpatientchu.web.partieSpecialise;
 
 
+import com.chu.appgestionpatientchu.dto.AnamneseDto;
 import com.chu.appgestionpatientchu.dto.DiagnostiqueNiveauSuperieurDto;
 import com.chu.appgestionpatientchu.dto.SearchDiagnostiqueNiveauSuperieurRequest;
 import com.chu.appgestionpatientchu.exceptions.EmptyParamArrayException;
@@ -60,6 +61,12 @@ public class DiagnostiqueNiveauSuperieurController {
     ){
         DiagnostiqueNiveauSuperieurDto updatedDiagnostiqueNiveauSuperieur = this.diagnostiqueNiveauSuperieurService.updateDiagnostiqueNiveauSuperieur(id ,diagnostiqueNiveauSuperieurDto);
         return new ResponseEntity<>(updatedDiagnostiqueNiveauSuperieur , HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> deleteDiagnostiqueNiveauSuperieur(@PathVariable Long id) {
+        DiagnostiqueNiveauSuperieurDto deleteDiagnostiqueNiveauSuperieur =  diagnostiqueNiveauSuperieurService.deleteDiagnostiqueNiveauSuperieur(id);
+        return new ResponseEntity<>(deleteDiagnostiqueNiveauSuperieur.getId() , HttpStatus.OK);
     }
 
 

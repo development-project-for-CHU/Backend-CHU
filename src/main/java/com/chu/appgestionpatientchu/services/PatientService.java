@@ -6,13 +6,16 @@ import com.chu.appgestionpatientchu.domain.Patient;
 import com.chu.appgestionpatientchu.dto.PatientDto;
 import com.chu.appgestionpatientchu.mappers.PatientMapper;
 import com.chu.appgestionpatientchu.repository.PatientRepository;
+import com.chu.appgestionpatientchu.utils.enums.Genders;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -49,6 +52,19 @@ public class PatientService {
         }
     }
 
+
+    public Map<Genders, Long> countMalesAndFemales() {
+        List<Patient> allPatients = patientRepository.findAll();
+
+
+        Map<Genders, Long> genderCountMap = allPatients.stream()
+                .collect(Collectors.groupingBy(Patient::getGenre, Collectors.counting()));
+
+        genderCountMap.putIfAbsent(Genders.MALE, 0L);
+        genderCountMap.putIfAbsent(Genders.FEMALE, 0L);
+
+        return genderCountMap;
+    }
 
     public Patient updatePatient(Long ipp, Patient updatedPatient) {
         Optional<Patient> existingPatientOptional = patientRepository.findById(ipp);

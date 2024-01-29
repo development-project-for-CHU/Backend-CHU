@@ -3,7 +3,9 @@ package com.chu.appgestionpatientchu.services.partieSpecialise;
 
 
 import com.chu.appgestionpatientchu.domain.ExamenClinique;
+import com.chu.appgestionpatientchu.dto.AnamneseDto;
 import com.chu.appgestionpatientchu.dto.ExamenCliniqueDto;
+import com.chu.appgestionpatientchu.mappers.partieSpecialise.MapperAnamnese;
 import com.chu.appgestionpatientchu.mappers.partieSpecialise.MapperExamenClinique;
 import com.chu.appgestionpatientchu.repository.partieSpecialise.ExamenCliniqueRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -51,17 +53,17 @@ public class ExamenCliniqueService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return examenCliniqueRepository.findByNameAndAddedAt(name.get(), creationDate.get() )
+            return examenCliniqueRepository.findByNameAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperExamenClinique::mapToExamenCliniqueDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return examenCliniqueRepository.findByName(name.get())
+            return examenCliniqueRepository.findByNameAndIsDeletedFalse(name.get())
                     .stream()
                     .map(MapperExamenClinique::mapToExamenCliniqueDto)
                     .collect(Collectors.toList());
         } else if (creationDate.isPresent()) {
-            return examenCliniqueRepository.findByAddedAt(creationDate.get())
+            return examenCliniqueRepository.findByAddedAtAndIsDeletedFalse(creationDate.get())
                     .stream()
                     .map(MapperExamenClinique::mapToExamenCliniqueDto)
                     .collect(Collectors.toList());
@@ -72,7 +74,7 @@ public class ExamenCliniqueService {
     }
 
     public ExamenCliniqueDto updateExamenClinique(Long id ,ExamenCliniqueDto updateExamenClinique) throws EntityNotFoundException {
-        return examenCliniqueRepository.findExamenCliniqueById(id)
+        return examenCliniqueRepository.findExamenCliniqueByIdAndIsDeletedFalse(id)
                 .map(examenClinique -> {
                     examenClinique.setName(updateExamenClinique.getName());
                     examenClinique.setIsPassedToCommune(updateExamenClinique.getIsPassedToCommune());
@@ -83,5 +85,18 @@ public class ExamenCliniqueService {
                     );
                 })
                 .orElseThrow(() -> new EntityNotFoundException(" examen Clinique not found with id " + id));
+    }
+
+
+    public ExamenCliniqueDto deleteExamenClinique(Long id) throws EntityNotFoundException  {
+        return examenCliniqueRepository.findExamenCliniqueByIdAndIsDeletedFalse(id )
+                .map(examenClinique  -> {
+                    examenClinique.setDeleted(true);
+
+                    return MapperExamenClinique.mapToExamenCliniqueDto(
+                            examenCliniqueRepository.save(examenClinique)
+                    );
+                })
+                .orElseThrow(() -> new EntityNotFoundException("examen CliniqueRepository not found with id " + id));
     }
 }

@@ -1,6 +1,7 @@
 package com.chu.appgestionpatientchu.repository.partieSpecialise;
 
 
+import com.chu.appgestionpatientchu.domain.Anamnese;
 import com.chu.appgestionpatientchu.domain.DiagnostiqueNiveauSuperieur;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,10 +15,12 @@ public interface DiagnostiqueNiveauSuperieurRepository extends JpaRepository<Dia
 
     Page findByIsDeletedFalse(Pageable page);
 
-    Optional<DiagnostiqueNiveauSuperieur> findDiagnostiqueNiveauSuperieurById(Long id);
-    List<DiagnostiqueNiveauSuperieur> findByName(String name );
-    List<DiagnostiqueNiveauSuperieur> findByAddedAt(LocalDate addedAt);
-    List<DiagnostiqueNiveauSuperieur> findByNameAndAddedAt(String name , LocalDate addedAt);
+
+    Optional<DiagnostiqueNiveauSuperieur> findDiagnostiqueNiveauSuperieurByIdAndIsDeletedFalse(Long id);
+    List<DiagnostiqueNiveauSuperieur> findByNameAndIsDeletedFalse(String name );
+    List<DiagnostiqueNiveauSuperieur> findByAddedAtAndIsDeletedFalse(LocalDate addedAt);
+    List<DiagnostiqueNiveauSuperieur> findByNameAndAddedAtAndIsDeletedFalse(String name, LocalDate addedAt);
+
 
 
 }

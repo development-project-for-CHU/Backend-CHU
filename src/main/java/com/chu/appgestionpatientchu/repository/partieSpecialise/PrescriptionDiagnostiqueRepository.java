@@ -2,6 +2,7 @@ package com.chu.appgestionpatientchu.repository.partieSpecialise;
 
 
 
+import com.chu.appgestionpatientchu.domain.ExamenClinique;
 import com.chu.appgestionpatientchu.domain.PrescriptionDiagnostique;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,8 +16,11 @@ public interface PrescriptionDiagnostiqueRepository extends JpaRepository<Prescr
 
     Page findByIsDeletedFalse(Pageable page);
 
-    Optional<PrescriptionDiagnostique> findPrescriptionDiagnostiqueById(Long id);
-    List<PrescriptionDiagnostique> findByName(String name );
-    List<PrescriptionDiagnostique> findByAddedAt(LocalDate addedAt);
-    List<PrescriptionDiagnostique> findByNameAndAddedAt(String name , LocalDate addedAt);
+
+    Optional<PrescriptionDiagnostique> findPrescriptionDiagnostiqueByIdAndIsDeletedFalse(Long id);
+    List<PrescriptionDiagnostique> findByNameAndIsDeletedFalse(String name );
+    List<PrescriptionDiagnostique> findByAddedAtAndIsDeletedFalse(LocalDate addedAt);
+    List<PrescriptionDiagnostique> findByNameAndAddedAtAndIsDeletedFalse(String name, LocalDate addedAt);
+
+
 }

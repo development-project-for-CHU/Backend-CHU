@@ -63,12 +63,12 @@ public class AnamneseController {
         return new ResponseEntity<>(updatedAnamnese , HttpStatus.OK);
     }
 
- /*   @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Long> deleteAnamneses(@PathVariable Long id) {
         AnamneseDto deleteAnamnese =  anamneseService.deleteAnamnese(id);
         return new ResponseEntity<>(deleteAnamnese.getId() , HttpStatus.OK);
     }
 
-  */
+
 
 }

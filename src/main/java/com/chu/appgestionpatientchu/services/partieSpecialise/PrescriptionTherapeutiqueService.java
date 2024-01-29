@@ -49,17 +49,17 @@ public class PrescriptionTherapeutiqueService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return prescriptionTherapeutiqueRepository.findByNameAndAddedAt(name.get(), creationDate.get() )
+            return prescriptionTherapeutiqueRepository.findByNameAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperPrescriptionTherapeutique::mapToPrescriptionTherapeutiqueDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return prescriptionTherapeutiqueRepository.findByName(name.get())
+            return prescriptionTherapeutiqueRepository.findByNameAndIsDeletedFalse(name.get())
                     .stream()
                     .map(MapperPrescriptionTherapeutique::mapToPrescriptionTherapeutiqueDto)
                     .collect(Collectors.toList());
         } else if (creationDate.isPresent()) {
-            return prescriptionTherapeutiqueRepository.findByAddedAt(creationDate.get())
+            return prescriptionTherapeutiqueRepository.findByAddedAtAndIsDeletedFalse(creationDate.get())
                     .stream()
                     .map(MapperPrescriptionTherapeutique::mapToPrescriptionTherapeutiqueDto)
                     .collect(Collectors.toList());
@@ -70,7 +70,7 @@ public class PrescriptionTherapeutiqueService {
     }
 
     public PrescriptionTherapeutiqueDto updatePrescriptionTherapeutique(Long id , PrescriptionTherapeutiqueDto updatePrescriptionTherapeutique) throws EntityNotFoundException {
-        return prescriptionTherapeutiqueRepository.findPrescriptionTherapeutiqueById(id)
+        return prescriptionTherapeutiqueRepository.findPrescriptionTherapeutiqueByIdAndIsDeletedFalse(id)
                 .map(prescriptionTherapeutique -> {
                     prescriptionTherapeutique.setName(updatePrescriptionTherapeutique.getName());
                     prescriptionTherapeutique.setIsPassedToCommune(updatePrescriptionTherapeutique.getIsPassedToCommune());
@@ -81,5 +81,17 @@ public class PrescriptionTherapeutiqueService {
                     );
                 })
                 .orElseThrow(() -> new EntityNotFoundException("PrescriptionTherapeutique not found with id " + id));
+    }
+
+    public PrescriptionTherapeutiqueDto deletePrescriptionTherapeutique(Long id) throws EntityNotFoundException  {
+        return prescriptionTherapeutiqueRepository.findPrescriptionTherapeutiqueByIdAndIsDeletedFalse(id )
+                .map(anamnese  -> {
+                    anamnese.setDeleted(true);
+
+                    return MapperPrescriptionTherapeutique.mapToPrescriptionTherapeutiqueDto(
+                            prescriptionTherapeutiqueRepository.save(anamnese)
+                    );
+                })
+                .orElseThrow(() -> new EntityNotFoundException("Anamnese not found with id " + id));
     }
 }

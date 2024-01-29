@@ -1,5 +1,6 @@
 package com.chu.appgestionpatientchu.repository.partieSpecialise;
 
+import com.chu.appgestionpatientchu.domain.PrescriptionTherapeutique;
 import com.chu.appgestionpatientchu.domain.Surveillance;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,9 +14,12 @@ public interface SurveillanceRepository  extends JpaRepository<Surveillance, Lon
 
     Page findByIsDeletedFalse(Pageable page);
 
-    Optional<Surveillance> findSurveillanceById(Long id);
-    List<Surveillance> findByName(String name );
-    List<Surveillance> findByAddedAt(LocalDate addedAt);
-    List<Surveillance> findByNameAndAddedAt(String name , LocalDate addedAt);
+
+    Optional<Surveillance> findSurveillanceByIdAndIsDeletedFalse(Long id);
+    List<Surveillance> findByNameAndIsDeletedFalse(String name );
+    List<Surveillance> findByAddedAtAndIsDeletedFalse(LocalDate addedAt);
+    List<Surveillance> findByNameAndAddedAtAndIsDeletedFalse(String name, LocalDate addedAt);
+
+
 
 }

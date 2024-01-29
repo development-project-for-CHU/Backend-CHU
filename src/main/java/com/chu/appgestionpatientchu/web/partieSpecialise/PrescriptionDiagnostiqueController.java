@@ -65,4 +65,11 @@ public class PrescriptionDiagnostiqueController {
     }
 
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> deletePrescriptionDiagnostique(@PathVariable Long id) {
+        PrescriptionDiagnostiqueDto deletePrescriptionDiagnostique =  prescriptionDiagnostiqueService.deletePrescriptionDiagnostique(id);
+        return new ResponseEntity<>(deletePrescriptionDiagnostique.getId() , HttpStatus.OK);
+    }
+
+
 }

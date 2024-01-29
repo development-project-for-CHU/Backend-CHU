@@ -2,7 +2,9 @@ package com.chu.appgestionpatientchu.services.partieSpecialise;
 
 
 import com.chu.appgestionpatientchu.domain.DiagnostiqueNiveauSuperieur;
+import com.chu.appgestionpatientchu.dto.AnamneseDto;
 import com.chu.appgestionpatientchu.dto.DiagnostiqueNiveauSuperieurDto;
+import com.chu.appgestionpatientchu.mappers.partieSpecialise.MapperAnamnese;
 import com.chu.appgestionpatientchu.mappers.partieSpecialise.MapperDiagnostiqueNiveauSuperieur;
 import com.chu.appgestionpatientchu.repository.partieSpecialise.DiagnostiqueNiveauSuperieurRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -50,17 +52,17 @@ public class DiagnostiqueNiveauSuperieurService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return diagnostiqueNiveauSuperieurRepository.findByNameAndAddedAt(name.get(), creationDate.get() )
+            return diagnostiqueNiveauSuperieurRepository.findByNameAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperDiagnostiqueNiveauSuperieur::mapToDiagnostiqueNiveauSuperieurDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return diagnostiqueNiveauSuperieurRepository.findByName(name.get())
+            return diagnostiqueNiveauSuperieurRepository.findByNameAndIsDeletedFalse(name.get())
                     .stream()
                     .map(MapperDiagnostiqueNiveauSuperieur::mapToDiagnostiqueNiveauSuperieurDto)
                     .collect(Collectors.toList());
         } else if (creationDate.isPresent()) {
-            return diagnostiqueNiveauSuperieurRepository.findByAddedAt(creationDate.get())
+            return diagnostiqueNiveauSuperieurRepository.findByAddedAtAndIsDeletedFalse(creationDate.get())
                     .stream()
                     .map(MapperDiagnostiqueNiveauSuperieur::mapToDiagnostiqueNiveauSuperieurDto)
                     .collect(Collectors.toList());
@@ -71,7 +73,7 @@ public class DiagnostiqueNiveauSuperieurService {
     }
 
     public DiagnostiqueNiveauSuperieurDto updateDiagnostiqueNiveauSuperieur(Long id , DiagnostiqueNiveauSuperieurDto updateDiagnostiqueNiveauSuperieur) throws EntityNotFoundException {
-        return diagnostiqueNiveauSuperieurRepository.findDiagnostiqueNiveauSuperieurById(id)
+        return diagnostiqueNiveauSuperieurRepository.findDiagnostiqueNiveauSuperieurByIdAndIsDeletedFalse(id)
                 .map(diagnostiqueNiveauSuperieur -> {
                     diagnostiqueNiveauSuperieur.setName(updateDiagnostiqueNiveauSuperieur.getName());
                     diagnostiqueNiveauSuperieur.setIsPassedToCommune(updateDiagnostiqueNiveauSuperieur.getIsPassedToCommune());
@@ -82,5 +84,18 @@ public class DiagnostiqueNiveauSuperieurService {
                     );
                 })
                 .orElseThrow(() -> new EntityNotFoundException("DiagnostiqueNiveauSuperieur not found with id " + id));
+    }
+
+
+    public DiagnostiqueNiveauSuperieurDto deleteDiagnostiqueNiveauSuperieur(Long id) throws EntityNotFoundException  {
+        return diagnostiqueNiveauSuperieurRepository.findDiagnostiqueNiveauSuperieurByIdAndIsDeletedFalse(id )
+                .map(diagnostiqueNiveauSuperieur  -> {
+                    diagnostiqueNiveauSuperieur.setDeleted(true);
+
+                    return MapperDiagnostiqueNiveauSuperieur.mapToDiagnostiqueNiveauSuperieurDto(
+                            diagnostiqueNiveauSuperieurRepository.save(diagnostiqueNiveauSuperieur)
+                    );
+                })
+                .orElseThrow(() -> new EntityNotFoundException("Diagnostique Niveau Superieur not found with id " + id));
     }
 }
