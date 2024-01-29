@@ -33,9 +33,13 @@ public class PartieCommune {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "MEDICATION_ENCOURS_PARTIE_COMMUNE")
     private List<MedicationEncours> listMedicationEncours ;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "SPECIFICITE_PARTIE_COMMUNE")
+    private List<Specificite> listSpecificite ;
+
     private boolean grossesFemme ;
 
-    private String specificite;
 
 
 

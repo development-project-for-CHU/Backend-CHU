@@ -27,7 +27,9 @@ public class PartieCommuneDto {
 
 
     private List<MedicationEncoursDto> listMedicationEncours ;
+
+    private List<SpecificiteDto> listSpecificite ;
     private boolean grossesFemme ;
 
-    private String specificite;
+
 }
