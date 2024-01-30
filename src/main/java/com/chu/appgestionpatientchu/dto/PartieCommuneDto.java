@@ -23,8 +23,6 @@ public class PartieCommuneDto {
     private List<AllergieDto> listAllergie;
 
 
-    private  List<SpecialiteDto> listSpecialite ;
-
 
     private List<MedicationEncoursDto> listMedicationEncours ;
 

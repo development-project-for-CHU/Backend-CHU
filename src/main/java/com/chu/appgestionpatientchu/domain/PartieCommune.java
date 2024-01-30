@@ -26,9 +26,7 @@ public class PartieCommune {
     @JoinTable(name = "ALLERGIE_PARTIE_COMMUNE")
     private List<Allergie> listAllergie;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "SPECIALITE_PARTIE_COMMUNE")
-    private  List<Specialite> listSpecialite ;
+ 
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "MEDICATION_ENCOURS_PARTIE_COMMUNE")
