@@ -2,7 +2,6 @@ package com.chu.appgestionpatientchu.web.partieSpecialise;
 
 
 
-import com.chu.appgestionpatientchu.dto.PrescriptionDiagnostiqueDto;
 import com.chu.appgestionpatientchu.dto.PrescriptionTherapeutiqueDto;
 import com.chu.appgestionpatientchu.dto.SearchPrescriptionTherapeutiqueRequest;
 import com.chu.appgestionpatientchu.exceptions.EmptyParamArrayException;
@@ -17,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/categories/partieSpecialise/prescriptionTherapeutique")
 public class PrescriptionTherapeutiqueController {
 

@@ -1,7 +1,7 @@
 package com.chu.appgestionpatientchu.web.partieSpecialise;
 
 
-import com.chu.appgestionpatientchu.dto.AnamneseDto;
+
 import com.chu.appgestionpatientchu.dto.DiagnostiqueNiveauSuperieurDto;
 import com.chu.appgestionpatientchu.dto.SearchDiagnostiqueNiveauSuperieurRequest;
 import com.chu.appgestionpatientchu.exceptions.EmptyParamArrayException;
@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/categories/partieSpecialise/diagnostiqueNiveauSuperieur")
 public class DiagnostiqueNiveauSuperieurController {
 

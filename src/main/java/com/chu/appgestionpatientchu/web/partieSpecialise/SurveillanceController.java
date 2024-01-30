@@ -1,12 +1,10 @@
 package com.chu.appgestionpatientchu.web.partieSpecialise;
 
 
-import com.chu.appgestionpatientchu.dto.AnamneseDto;
-import com.chu.appgestionpatientchu.dto.PrescriptionTherapeutiqueDto;
+
 import com.chu.appgestionpatientchu.dto.SearchSurveillanceRequest;
 import com.chu.appgestionpatientchu.dto.SurveillanceDto;
 import com.chu.appgestionpatientchu.exceptions.EmptyParamArrayException;
-import com.chu.appgestionpatientchu.services.partieSpecialise.AnamneseService;
 import com.chu.appgestionpatientchu.services.partieSpecialise.SurveillanceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/categories/partieSpecialise/surveillance")
 public class SurveillanceController {
 

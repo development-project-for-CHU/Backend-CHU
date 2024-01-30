@@ -1,12 +1,10 @@
 package com.chu.appgestionpatientchu.web.partieCommune;
 
 
-import com.chu.appgestionpatientchu.dto.AllergieDto;
-import com.chu.appgestionpatientchu.dto.SearchAllergieRequest;
+
 import com.chu.appgestionpatientchu.dto.SearchSpecificiteRequest;
 import com.chu.appgestionpatientchu.dto.SpecificiteDto;
 import com.chu.appgestionpatientchu.exceptions.EmptyParamArrayException;
-import com.chu.appgestionpatientchu.services.partieCommune.AllergieService;
 import com.chu.appgestionpatientchu.services.partieCommune.SpecificiteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/categories/partieCommune/specificite")
 public class SpecificiteController {
 
