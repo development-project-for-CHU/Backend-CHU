@@ -1,16 +1,13 @@
 package com.chu.appgestionpatientchu.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @Data
 @Builder
 @Entity
@@ -20,7 +17,7 @@ public class PrescriptionTherapeutique {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomPrescriptionTherapeutique;
+    private String name;
     private boolean isSelected;
 
     private boolean isPassedToCommune;
@@ -30,4 +27,14 @@ public class PrescriptionTherapeutique {
     @ManyToMany
     private List<PartieSpecialise> listPartieSpecialise ;
 
+    @NonNull
+    private boolean isDeleted  ;
+
+    public boolean getIsPassedToCommune() {
+        return isPassedToCommune;
+    }
+
+    public void setIsPassedToCommune(boolean passedToCommune) {
+        isPassedToCommune = passedToCommune;
+    }
 }

@@ -6,7 +6,12 @@ import com.chu.appgestionpatientchu.dto.LoginDto;
 import com.chu.appgestionpatientchu.dto.PersonneDto;
 import com.chu.appgestionpatientchu.dto.SignUpDto;
 import com.chu.appgestionpatientchu.services.PersonneService;
+<<<<<<< HEAD
 import jakarta.validation.Valid;
+=======
+import com.chu.appgestionpatientchu.utils.enums.Genders;
+import com.chu.appgestionpatientchu.utils.enums.Roles;
+>>>>>>> 7cf5216b2181b96374dbf6538578f1d1f8f1c617
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +19,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -91,6 +98,17 @@ public class PersonneController {
         return ResponseEntity.ok(registeredPersonne);
     }
 
+
+    @GetMapping("/count-roles")
+    public Map<String, Long> countRoles() {
+        Map<Roles, Long> rolesCountMap = personneService.countAdminAndChefDeServiceAndMedcinAndInfirmier();
+
+
+        Map<String, Long> result = rolesCountMap.entrySet().stream()
+                .collect(Collectors.toMap(entry -> entry.getKey().toString(), Map.Entry::getValue));
+
+        return result;
+    }
 
 
 

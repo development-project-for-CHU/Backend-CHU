@@ -16,7 +16,7 @@ public class PrescriptionDiagnostique {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomPrescriptionDiagnostique;
+    private String name;
 
 
     private boolean isPassedToCommune;
@@ -28,4 +28,12 @@ public class PrescriptionDiagnostique {
 
     @NonNull
     private boolean isDeleted  ;
+
+    public void setIsPassedToCommune(boolean passedToCommune) {
+        isPassedToCommune = passedToCommune;
+    }
+
+    public boolean getIsPassedToCommune() {
+        return isPassedToCommune;
+    }
 }

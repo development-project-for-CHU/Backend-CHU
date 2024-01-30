@@ -1,12 +1,10 @@
 package com.chu.appgestionpatientchu.web.partieSpecialise;
 
 
-import com.chu.appgestionpatientchu.dto.AnamneseDto;
-import com.chu.appgestionpatientchu.dto.ExamenCliniqueDto;
+
 import com.chu.appgestionpatientchu.dto.PrescriptionDiagnostiqueDto;
 import com.chu.appgestionpatientchu.dto.SearchExamenCliniqueRequest;
 import com.chu.appgestionpatientchu.exceptions.EmptyParamArrayException;
-import com.chu.appgestionpatientchu.services.partieSpecialise.AnamneseService;
 import com.chu.appgestionpatientchu.services.partieSpecialise.PrescriptionDiagnostiqueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/categories/partieSpecialise/PrescriptionDiagnostique")
 public class PrescriptionDiagnostiqueController {
 
@@ -62,6 +61,13 @@ public class PrescriptionDiagnostiqueController {
     ){
         PrescriptionDiagnostiqueDto updatedPrescriptionDiagnostique= this.prescriptionDiagnostiqueService.updatePrescriptionDiagnostique(id , prescriptionDiagnostiqueDto);
         return new ResponseEntity<>(updatedPrescriptionDiagnostique , HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> deletePrescriptionDiagnostique(@PathVariable Long id) {
+        PrescriptionDiagnostiqueDto deletePrescriptionDiagnostique =  prescriptionDiagnostiqueService.deletePrescriptionDiagnostique(id);
+        return new ResponseEntity<>(deletePrescriptionDiagnostique.getId() , HttpStatus.OK);
     }
 
 

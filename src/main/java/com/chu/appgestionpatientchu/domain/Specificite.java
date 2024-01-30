@@ -1,28 +1,30 @@
 package com.chu.appgestionpatientchu.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
-
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @Data
 @Builder
 @Entity
-@Table(name = "SPECIALITE")
-public class Specialite {
+@Table(name = "SPECIFICITE")
+public class Specificite {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
-    private String nomSpecialite ;
+    private String  name ;
+
     @Temporal(value = TemporalType.DATE)
-    private Date addedAt;
-    @ManyToMany(mappedBy = "listSpecialite")
+    private Date addedAt ;
+
+
+    @ManyToMany(mappedBy = "listSpecificite")
     private List<PartieCommune> ListPartieCommune ;
 
+    @NonNull
+    private boolean isDeleted  ;
 }

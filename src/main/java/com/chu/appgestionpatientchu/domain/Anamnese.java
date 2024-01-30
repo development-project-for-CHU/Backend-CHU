@@ -18,7 +18,7 @@ public class Anamnese {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomAnamnese;
+    private String name;
 
     private boolean isPassedToCommune;
     @Temporal(value = TemporalType.DATE)
@@ -29,4 +29,11 @@ public class Anamnese {
     @NonNull
     private boolean isDeleted  ;
 
+    public void setIsPassedToCommune(boolean passedToCommune) {
+        isPassedToCommune = passedToCommune;
+    }
+
+    public boolean getIsPassedToCommune() {
+        return isPassedToCommune;
+    }
 }

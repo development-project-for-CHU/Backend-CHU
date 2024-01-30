@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/categories/partieSpecialise/exemanClinique")
 public class ExamenCliniqueController {
 
@@ -63,6 +64,14 @@ public class ExamenCliniqueController {
     ){
         ExamenCliniqueDto updatedExamenClinique = this.examenCliniqueService.updateExamenClinique(id , examenCliniqueDto);
         return new ResponseEntity<>(updatedExamenClinique , HttpStatus.OK);
+    }
+
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> deleteExamenClinique(@PathVariable Long id) {
+        ExamenCliniqueDto deleteExamenClinique =  examenCliniqueService.deleteExamenClinique(id);
+        return new ResponseEntity<>(deleteExamenClinique.getId() , HttpStatus.OK);
     }
 
 

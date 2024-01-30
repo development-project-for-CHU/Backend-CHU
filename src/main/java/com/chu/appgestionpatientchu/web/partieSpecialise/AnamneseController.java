@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/categories/partieSpecialise/anamnese")
 public class AnamneseController {
 
@@ -63,12 +64,12 @@ public class AnamneseController {
         return new ResponseEntity<>(updatedAnamnese , HttpStatus.OK);
     }
 
- /*   @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Long> deleteAnamneses(@PathVariable Long id) {
         AnamneseDto deleteAnamnese =  anamneseService.deleteAnamnese(id);
         return new ResponseEntity<>(deleteAnamnese.getId() , HttpStatus.OK);
     }
 
-  */
+
 
 }

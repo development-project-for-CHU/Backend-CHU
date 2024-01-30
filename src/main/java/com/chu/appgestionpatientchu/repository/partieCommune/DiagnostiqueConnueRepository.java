@@ -16,9 +16,9 @@ public interface DiagnostiqueConnueRepository extends JpaRepository<Diagnostique
     Page findByIsDeletedFalse(Pageable page);
 
     Optional<DiagnostiqueConnue> findDiagnostiqueConnueByIdAndIsDeletedFalse(Long id);
-    List<DiagnostiqueConnue> findByNomDiagnostiqueConnueAndIsDeletedFalse(String nomDiagnostiqueConnue );
+    List<DiagnostiqueConnue> findByNameAndIsDeletedFalse(String name );
     List<DiagnostiqueConnue> findByAddedAtAndIsDeletedFalse(LocalDate addedAt);
-    List<DiagnostiqueConnue> findByNomDiagnostiqueConnueAndAddedAtAndIsDeletedFalse(String nomDiagnostiqueConnue, LocalDate addedAt);
+    List<DiagnostiqueConnue> findByNameAndAddedAtAndIsDeletedFalse(String name, LocalDate addedAt);
 
 
 }

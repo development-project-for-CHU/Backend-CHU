@@ -19,7 +19,7 @@ public class AllergieDto {
 
     private Long id ;
     @NotBlank(message = "The allergy name must not be blank")
-    private String  nomAllergie ;
+    private String  name ;
     private Date addedAt;
     private List<Long> listIdPartieCommune ;
 

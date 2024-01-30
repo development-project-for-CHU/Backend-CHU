@@ -17,7 +17,7 @@ public class ExamenCliniqueDto {
 
     private Long id;
 
-    private String nomExamenClinique;
+    private String name;
 
 
     private boolean isPassedToCommune;
@@ -26,5 +26,13 @@ public class ExamenCliniqueDto {
     private Date addedAt;
 
     private List<Long> listIdPartieSpecialise ;
+
+    public void setIsPassedToCommune(boolean passedToCommune) {
+        isPassedToCommune = passedToCommune;
+    }
+
+    public boolean getIsPassedToCommune() {
+        return isPassedToCommune;
+    }
 
 }

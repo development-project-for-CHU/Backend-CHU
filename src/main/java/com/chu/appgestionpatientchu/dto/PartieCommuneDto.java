@@ -1,6 +1,5 @@
 package com.chu.appgestionpatientchu.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,12 +9,9 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Builder
-
+@Data
 public class PartieCommuneDto {
-
-    private Long id ;
 
     private List<Long> allergies;
 

@@ -16,7 +16,7 @@ public class DiagnostiqueConnue {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id ;
-     private String nomDiagnostiqueConnue ;
+     private String name ;
      @Temporal(value = TemporalType.DATE)
      private Date addedAt;
 

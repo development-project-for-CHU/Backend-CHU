@@ -13,8 +13,8 @@ public interface AllergieRepository extends JpaRepository<Allergie , Long> {
     Page findByIsDeletedFalse(Pageable page);
 
     Optional<Allergie> findAllergieByIdAndIsDeletedFalse(Long id);
-    List<Allergie> findByNomAllergieAndIsDeletedFalse(String nomAllergie );
+    List<Allergie> findByNameAndIsDeletedFalse(String name );
     List<Allergie> findByAddedAtAndIsDeletedFalse(LocalDate addedAt);
-    List<Allergie> findByNomAllergieAndAddedAtAndIsDeletedFalse(String nomAllergie, LocalDate addedAt);
+    List<Allergie> findByNameAndAddedAtAndIsDeletedFalse(String name, LocalDate addedAt);
 }
 

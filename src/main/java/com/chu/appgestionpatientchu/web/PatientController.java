@@ -4,6 +4,7 @@ package com.chu.appgestionpatientchu.web;
 import com.chu.appgestionpatientchu.domain.Patient;
 import com.chu.appgestionpatientchu.dto.PatientDto;
 import com.chu.appgestionpatientchu.services.PatientService;
+import com.chu.appgestionpatientchu.utils.enums.Genders;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -35,6 +38,16 @@ private final PatientService patientService;
         return ResponseEntity.ok(patientService.findAllPatient());
     }
 
+    @GetMapping("/count-genders")
+    public Map<String, Long> countGenders() {
+        Map<Genders, Long> genderCountMap = patientService.countMalesAndFemales();
+
+
+        Map<String, Long> result = genderCountMap.entrySet().stream()
+                .collect(Collectors.toMap(entry -> entry.getKey().toString(), Map.Entry::getValue));
+
+        return result;
+    }
     @GetMapping("/{patientIpp}")
     public ResponseEntity<Patient> findPatientByIpp(@PathVariable("patientIpp") Long ipp) {
         Patient patient = patientService.findPatientIpp(ipp);

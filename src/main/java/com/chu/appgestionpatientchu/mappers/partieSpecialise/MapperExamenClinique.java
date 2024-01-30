@@ -13,15 +13,16 @@ public class MapperExamenClinique {
 
     public static ExamenClinique mapToExamenClinique(ExamenCliniqueDto examenCliniqueDto){
         return ExamenClinique.builder()
-                .nomExamenClinique(examenCliniqueDto.getNomExamenClinique())
+                .name(examenCliniqueDto.getName())
                 .addedAt(new Date())
                 .isPassedToCommune(false)
                 .build();
     }
     public static ExamenCliniqueDto mapToExamenCliniqueDto(ExamenClinique examenClinique){
         return ExamenCliniqueDto.builder()
-                .nomExamenClinique(examenClinique.getNomExamenClinique())
+                .name(examenClinique.getName())
                 .id(examenClinique.getId())
+                .isPassedToCommune(examenClinique.getIsPassedToCommune())
                 .addedAt(examenClinique.getAddedAt())
                 .listIdPartieSpecialise(
                         examenClinique.getListPartieSpecialise() != null ?

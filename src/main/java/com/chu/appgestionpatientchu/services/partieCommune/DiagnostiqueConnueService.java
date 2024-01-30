@@ -48,12 +48,12 @@ public class DiagnostiqueConnueService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return diagnostiqueConnueRepository.findByNomDiagnostiqueConnueAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
+            return diagnostiqueConnueRepository.findByNameAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperDiagnostiqueConnue::mapToDiagnostiqueConnueDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return diagnostiqueConnueRepository.findByNomDiagnostiqueConnueAndIsDeletedFalse(name.get())
+            return diagnostiqueConnueRepository.findByNameAndIsDeletedFalse(name.get())
                     .stream()
                     .map(MapperDiagnostiqueConnue::mapToDiagnostiqueConnueDto)
                     .collect(Collectors.toList());
@@ -72,7 +72,7 @@ public class DiagnostiqueConnueService {
     public DiagnostiqueConnueDto updateDiagnostiqueConnue(Long id , DiagnostiqueConnueDto updateDiagnostiqueConnue) throws EntityNotFoundException {
         return diagnostiqueConnueRepository.findDiagnostiqueConnueByIdAndIsDeletedFalse(id)
                 .map(diagnostiqueConnue -> {
-                    diagnostiqueConnue.setNomDiagnostiqueConnue(updateDiagnostiqueConnue.getNomDiagnostiqueConnue());
+                    diagnostiqueConnue.setName(updateDiagnostiqueConnue.getName());
                     diagnostiqueConnue.setAddedAt(updateDiagnostiqueConnue.getAddedAt());
 
                     return MapperDiagnostiqueConnue.mapToDiagnostiqueConnueDto(

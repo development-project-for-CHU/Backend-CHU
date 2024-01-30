@@ -17,7 +17,7 @@ import java.util.List;
 public class DiagnostiqueConnueDto {
 
      private Long id ;
-     private String nomDiagnostiqueConnue ;
+     private String name ;
 
      private Date addedAt;
 

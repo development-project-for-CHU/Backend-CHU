@@ -56,12 +56,12 @@ public class MedicationEncoursService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return medicationEncoursRepository.findByNomMedicationEncoursAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
+            return medicationEncoursRepository.findByNameAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperMedicationEncours::mapToMedicationEncoursDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return medicationEncoursRepository.findByNomMedicationEncoursAndIsDeletedFalse(name.get())
+            return medicationEncoursRepository.findByNameAndIsDeletedFalse(name.get())
                     .stream()
                     .map(MapperMedicationEncours::mapToMedicationEncoursDto)
                     .collect(Collectors.toList());
@@ -79,7 +79,7 @@ public class MedicationEncoursService {
     public MedicationEncoursDto updateMedicationEncours(Long id , MedicationEncoursDto updateMedicationEncours) throws EntityNotFoundException {
         return medicationEncoursRepository.findMedicationEncoursByIdAndIsDeletedFalse(id)
                 .map(medicationEncours -> {
-                    medicationEncours.setNomMedicationEncours(updateMedicationEncours.getNomMedicament());
+                    medicationEncours.setName(updateMedicationEncours.getName());
                     medicationEncours.setAddedAt(updateMedicationEncours.getAddedAt());
 
                     return MapperMedicationEncours.mapToMedicationEncoursDto(

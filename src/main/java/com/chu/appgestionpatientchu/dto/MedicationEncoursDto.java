@@ -17,7 +17,7 @@ import java.util.List;
 public class MedicationEncoursDto {
 
     private Long id ;
-    private String nomMedicament ;
+    private String name ;
 
     private Date addedAt ;
 

@@ -1,13 +1,10 @@
 package com.chu.appgestionpatientchu.services.partieSpecialise;
 
 
-import com.chu.appgestionpatientchu.domain.ExamenClinique;
+
 import com.chu.appgestionpatientchu.domain.PrescriptionDiagnostique;
-import com.chu.appgestionpatientchu.dto.ExamenCliniqueDto;
 import com.chu.appgestionpatientchu.dto.PrescriptionDiagnostiqueDto;
-import com.chu.appgestionpatientchu.mappers.partieSpecialise.MapperExamenClinique;
 import com.chu.appgestionpatientchu.mappers.partieSpecialise.MapperPrescriptionDiagnostique;
-import com.chu.appgestionpatientchu.repository.partieSpecialise.ExamenCliniqueRepository;
 import com.chu.appgestionpatientchu.repository.partieSpecialise.PrescriptionDiagnostiqueRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -52,17 +49,17 @@ public class PrescriptionDiagnostiqueService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return prescriptionDiagnostiqueRepository.findByNomPrescriptionDiagnostiqueAndAddedAt(name.get(), creationDate.get() )
+            return prescriptionDiagnostiqueRepository.findByNameAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperPrescriptionDiagnostique::mapToPrescriptionDiagnostiqueDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return prescriptionDiagnostiqueRepository.findByNomPrescriptionDiagnostique(name.get())
+            return prescriptionDiagnostiqueRepository.findByNameAndIsDeletedFalse(name.get())
                     .stream()
                     .map(MapperPrescriptionDiagnostique::mapToPrescriptionDiagnostiqueDto)
                     .collect(Collectors.toList());
         } else if (creationDate.isPresent()) {
-            return prescriptionDiagnostiqueRepository.findByAddedAt(creationDate.get())
+            return prescriptionDiagnostiqueRepository.findByAddedAtAndIsDeletedFalse(creationDate.get())
                     .stream()
                     .map(MapperPrescriptionDiagnostique::mapToPrescriptionDiagnostiqueDto)
                     .collect(Collectors.toList());
@@ -74,9 +71,10 @@ public class PrescriptionDiagnostiqueService {
 
 
     public PrescriptionDiagnostiqueDto updatePrescriptionDiagnostique(Long id ,PrescriptionDiagnostiqueDto updatePrescriptionDiagnostique) throws EntityNotFoundException {
-        return prescriptionDiagnostiqueRepository.findPrescriptionDiagnostiqueById(id)
+        return prescriptionDiagnostiqueRepository.findPrescriptionDiagnostiqueByIdAndIsDeletedFalse(id)
                 .map(prescriptionDiagnostique -> {
-                    prescriptionDiagnostique.setNomPrescriptionDiagnostique(updatePrescriptionDiagnostique.getNomPrescriptionDiagnostique());
+                    prescriptionDiagnostique.setName(updatePrescriptionDiagnostique.getName());
+                    prescriptionDiagnostique.setIsPassedToCommune(updatePrescriptionDiagnostique.getIsPassedToCommune());
                     prescriptionDiagnostique.setAddedAt(updatePrescriptionDiagnostique.getAddedAt());
 
                     return MapperPrescriptionDiagnostique.mapToPrescriptionDiagnostiqueDto(
@@ -84,6 +82,18 @@ public class PrescriptionDiagnostiqueService {
                     );
                 })
                 .orElseThrow(() -> new EntityNotFoundException("  Prescription DiagnostiqueDto not found with id " + id));
+    }
+
+    public PrescriptionDiagnostiqueDto deletePrescriptionDiagnostique(Long id) throws EntityNotFoundException  {
+        return prescriptionDiagnostiqueRepository.findPrescriptionDiagnostiqueByIdAndIsDeletedFalse(id )
+                .map(anamnese  -> {
+                    anamnese.setDeleted(true);
+
+                    return MapperPrescriptionDiagnostique.mapToPrescriptionDiagnostiqueDto(
+                            prescriptionDiagnostiqueRepository.save(anamnese)
+                    );
+                })
+                .orElseThrow(() -> new EntityNotFoundException("Prescription Diagnostique not found with id " + id));
     }
 
 

@@ -16,13 +16,23 @@ import java.util.List;
 public class SurveillanceDto {
 
     private Long id;
-    private String nomSurveillance;
+    private String name;
 
     private boolean isPassedToCommune;
 
+
+
     private Date addedAt;
 
-    private List<PartieSpecialiseDto> listPartieSpecialise ;
+    private List<Long> listIdPartieSpecialise ;
+
+    public boolean getIsPassedToCommune() {
+        return isPassedToCommune;
+    }
+
+    public void setIsPassedToCommune(boolean passedToCommune) {
+        isPassedToCommune = passedToCommune;
+    }
 
 
 

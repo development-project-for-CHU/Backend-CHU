@@ -1,6 +1,6 @@
 package com.chu.appgestionpatientchu.dto;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,14 +13,11 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
-
-public class SpecialiteDto {
+public class SpecificiteDto {
 
     private Long id ;
-    private String nomSpecialite ;
-
+    @NotBlank(message = "The  Specificite name must not be blank")
+    private String  name ;
     private Date addedAt;
-
-    private List<PartieCommuneDto> ListPartieCommune ;
-
+    private List<Long> listIdPartieCommune ;
 }

@@ -26,8 +26,8 @@ public class AnamneseService {
     private final AnamneseRepository anamneseRepository;
 
 
-    public List<AnamneseDto> saveAll(List<AnamneseDto> allergies){
-        List<Anamnese> anamneseList = allergies.stream().map(MapperAnamnese::mapToAnamnese).collect(Collectors.toList());
+    public List<AnamneseDto> saveAll(List<AnamneseDto> anamnese){
+        List<Anamnese> anamneseList = anamnese.stream().map(MapperAnamnese::mapToAnamnese).collect(Collectors.toList());
         List<Anamnese> savedAnamnese = this.anamneseRepository.saveAll(anamneseList);
         return savedAnamnese.stream()
                 .map(MapperAnamnese::mapToAnamneseDto)
@@ -52,17 +52,17 @@ public class AnamneseService {
             Optional<LocalDate> creationDate)
     {
         if (name.isPresent() && creationDate.isPresent()) {
-            return anamneseRepository.findByNomAnamneseAndAddedAt(name.get(), creationDate.get() )
+            return anamneseRepository.findByNameAndAddedAtAndIsDeletedFalse(name.get(), creationDate.get() )
                     .stream()
                     .map(MapperAnamnese::mapToAnamneseDto)
                     .collect(Collectors.toList());
         } else if (name.isPresent()) {
-            return anamneseRepository.findByNomAnamnese(name.get())
+            return anamneseRepository.findByNameAndIsDeletedFalse(name.get())
                     .stream()
                     .map(MapperAnamnese::mapToAnamneseDto)
                     .collect(Collectors.toList());
         } else if (creationDate.isPresent()) {
-            return anamneseRepository.findByAddedAt(creationDate.get())
+            return anamneseRepository.findByAddedAtAndIsDeletedFalse(creationDate.get())
                     .stream()
                     .map(MapperAnamnese::mapToAnamneseDto)
                     .collect(Collectors.toList());
@@ -73,20 +73,21 @@ public class AnamneseService {
     }
 
     public AnamneseDto updateAnamnese(Long id , AnamneseDto updateAnamnese) throws EntityNotFoundException {
-        return anamneseRepository.findAnamneseById(id)
-                .map(allergie -> {
-                    allergie.setNomAnamnese(updateAnamnese.getNomAnamnese());
-                    allergie.setAddedAt(updateAnamnese.getAddedAt());
+        return anamneseRepository.findAnamneseByIdAndIsDeletedFalse(id)
+                .map(anamnese -> {
+                    anamnese.setName(updateAnamnese.getName());
+                    anamnese.setIsPassedToCommune(updateAnamnese.getIsPassedToCommune());
+                    anamnese.setAddedAt(updateAnamnese.getAddedAt());
 
                     return MapperAnamnese.mapToAnamneseDto(
-                            anamneseRepository.save(allergie)
+                            anamneseRepository.save(anamnese)
                     );
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Anamnese not found with id " + id));
     }
 
 
-/*    public AnamneseDto deleteAnamnese(Long id) throws EntityNotFoundException  {
+    public AnamneseDto deleteAnamnese(Long id) throws EntityNotFoundException  {
         return anamneseRepository.findAnamneseByIdAndIsDeletedFalse(id )
                 .map(anamnese  -> {
                     anamnese.setDeleted(true);
@@ -99,5 +100,5 @@ public class AnamneseService {
     }
 
 
- */
+
 }

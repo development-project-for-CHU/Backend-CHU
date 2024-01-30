@@ -2,6 +2,7 @@ package com.chu.appgestionpatientchu.services;
 
 
 
+import com.chu.appgestionpatientchu.domain.Patient;
 import com.chu.appgestionpatientchu.domain.Personne;
 import com.chu.appgestionpatientchu.dto.LoginDto;
 import com.chu.appgestionpatientchu.dto.PersonneDto;
@@ -9,6 +10,8 @@ import com.chu.appgestionpatientchu.dto.SignUpDto;
 import com.chu.appgestionpatientchu.exceptions.AppException;
 import com.chu.appgestionpatientchu.mappers.PersonneMapper;
 import com.chu.appgestionpatientchu.repository.PersonneRepository;
+import com.chu.appgestionpatientchu.utils.enums.Genders;
+import com.chu.appgestionpatientchu.utils.enums.Roles;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +20,9 @@ import org.springframework.stereotype.Service;
 
 import java.nio.CharBuffer;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -110,6 +115,22 @@ public class PersonneService {
         public PersonneNotFoundException(String message) {
             super(message);
         }
+    }
+
+
+    public Map<Roles, Long> countAdminAndChefDeServiceAndMedcinAndInfirmier() {
+        List<Personne> allPersonne = personneRepository.findAll();
+
+
+        Map<Roles, Long> rolesCountMap = allPersonne.stream()
+                .collect(Collectors.groupingBy(Personne::getRoles, Collectors.counting()));
+
+        rolesCountMap.putIfAbsent(Roles.ADMIN, 0L);
+        rolesCountMap.putIfAbsent(Roles.CHEF_SERVICE, 0L);
+        rolesCountMap.putIfAbsent(Roles.MEDECIN, 0L);
+        rolesCountMap.putIfAbsent(Roles.INFIRMIER, 0L);
+
+        return rolesCountMap;
     }
 
 

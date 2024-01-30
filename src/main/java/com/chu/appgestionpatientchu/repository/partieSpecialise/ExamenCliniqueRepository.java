@@ -1,7 +1,8 @@
 package com.chu.appgestionpatientchu.repository.partieSpecialise;
 
 
-import com.chu.appgestionpatientchu.domain.Anamnese;
+
+import com.chu.appgestionpatientchu.domain.DiagnostiqueNiveauSuperieur;
 import com.chu.appgestionpatientchu.domain.ExamenClinique;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,8 +16,11 @@ public interface ExamenCliniqueRepository extends JpaRepository<ExamenClinique, 
 
     Page findByIsDeletedFalse(Pageable page);
 
-    Optional<ExamenClinique> findExamenCliniqueById(Long id);
-    List<ExamenClinique> findByNomExamenClinique(String nomExamenClinique );
-    List<ExamenClinique> findByAddedAt(LocalDate addedAt);
-    List<ExamenClinique> findByNomExamenCliniqueAndAddedAt(String nomExamenClinique , LocalDate addedAt);
+
+    Optional<ExamenClinique> findExamenCliniqueByIdAndIsDeletedFalse(Long id);
+    List<ExamenClinique> findByNameAndIsDeletedFalse(String name );
+    List<ExamenClinique> findByAddedAtAndIsDeletedFalse(LocalDate addedAt);
+    List<ExamenClinique> findByNameAndAddedAtAndIsDeletedFalse(String name, LocalDate addedAt);
+
+
 }

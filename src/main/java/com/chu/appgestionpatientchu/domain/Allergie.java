@@ -16,7 +16,7 @@ public class Allergie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
-    private String  nomAllergie ;
+    private String  name ;
 
     @Temporal(value = TemporalType.DATE)
     private Date addedAt ;

@@ -19,12 +19,20 @@ public class AnamneseDto {
 
     private Long id;
 
-    private String nomAnamnese;
+    private String name;
 
     private boolean isPassedToCommune;
 
     private Date addedAt;
 
     private List<Long> listIdPartieSpecialise ;
+
+    public void setIsPassedToCommune(boolean passedToCommune) {
+        isPassedToCommune = passedToCommune;
+    }
+
+    public boolean getIsPassedToCommune() {
+        return isPassedToCommune;
+    }
 
 }
