@@ -3,11 +3,19 @@ package com.chu.appgestionpatientchu.services;
 
 
 import com.chu.appgestionpatientchu.domain.Personne;
+import com.chu.appgestionpatientchu.dto.LoginDto;
+import com.chu.appgestionpatientchu.dto.PersonneDto;
+import com.chu.appgestionpatientchu.dto.SignUpDto;
+import com.chu.appgestionpatientchu.exceptions.AppException;
+import com.chu.appgestionpatientchu.mappers.PersonneMapper;
 import com.chu.appgestionpatientchu.repository.PersonneRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.nio.CharBuffer;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +23,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PersonneService {
 
-
+    private final PasswordEncoder passwordEncoder;
     @Autowired
     private final PersonneRepository personneRepository;
 
@@ -62,7 +70,40 @@ public class PersonneService {
             throw new PersonneService.PersonneNotFoundException("Personne not found with id: " + id);
         }
     }
+    public Optional<Personne> findByEmail(String email) {
+        return personneRepository.findByEmail(email);
+    }
+    public Optional<Personne> findByLoginAndPassword(String email, String password) {
+        return personneRepository.findByEmailAndPassword(email, password);
+    }
 
+
+    public PersonneDto login(LoginDto credentialsDto) {
+       Personne personneOptional = personneRepository.findByEmail(
+                credentialsDto.getEmail()).orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
+
+
+            if(passwordEncoder.matches(credentialsDto.getPassword(), personneOptional.getPassword())){
+            return PersonneMapper.mapToDto(personneOptional);
+        } else {
+            throw new AppException("Invalid credentials", HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    public PersonneDto register(SignUpDto personne) {
+        Optional<Personne> existingPersonne =personneRepository.findByEmail(personne.getEmail());
+
+        if (existingPersonne.isPresent()) {
+            throw new AppException("Email already exists", HttpStatus.BAD_REQUEST);
+        }
+
+     Personne personne1 =PersonneMapper.mapToPersonne(personne);
+        personne1.setPassword(passwordEncoder.encode(personne.getPassword()));
+
+        Personne savedPersonne = savePersonne(personne1);
+
+        return PersonneMapper.mapToDto(savedPersonne);
+    }
 
 
     public static class PersonneNotFoundException extends RuntimeException {

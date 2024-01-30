@@ -17,14 +17,15 @@ public class PartieSpecialiseDto {
 
     private Long id;
 
+    private List<Long> listAnamnese;
 
-    private List<AnamneseDto> listAnamnese;
+    private List<Long> listExamenClinique;
 
+    private List<Long> listPrescriptionDiagnostique;
 
-       private List<ExamenCliniqueDto> listExamenClinique;
-    private List<PrescriptionDiagnostiqueDto> listPrescriptionDiagnostique;
-    private List<DiagnostiqueNiveauSuperieurDto> listDiagnostiqueNiveauSuperieur;
-    private List<PrescriptionTherapeutiqueDto> listPrescriptionTherapeutique;
-    private List<SurveillanceDto> listSurveillance;
+    private List<Long> listDiagnostiqueNiveauSuperieur;
 
+    private List<Long> listPrescriptionTherapeutique;
+
+    private List<Long> listSurveillance;
 }

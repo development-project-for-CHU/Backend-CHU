@@ -1,7 +1,12 @@
 package com.chu.appgestionpatientchu.web;
 
+import com.chu.appgestionpatientchu.config.UserAuthenticationProvider;
 import com.chu.appgestionpatientchu.domain.Personne;
+import com.chu.appgestionpatientchu.dto.LoginDto;
+import com.chu.appgestionpatientchu.dto.PersonneDto;
+import com.chu.appgestionpatientchu.dto.SignUpDto;
 import com.chu.appgestionpatientchu.services.PersonneService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PersonneController {
 
-
+    private final UserAuthenticationProvider userAuthenticationProvider;
     @Autowired
     private final PersonneService personneService;
 
@@ -69,6 +74,21 @@ public class PersonneController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<PersonneDto> login(@RequestBody @Valid LoginDto credentialsDto) {
+        PersonneDto personneDto = personneService.login(credentialsDto);
+        personneDto.setToken(userAuthenticationProvider.createToken(personneDto));
+
+        return ResponseEntity.ok(personneDto);
+    }
+
+
+    @PostMapping("/register")
+    public ResponseEntity<PersonneDto> register(@RequestBody @Valid SignUpDto personne) {
+        PersonneDto registeredPersonne = personneService.register(personne);
+        return ResponseEntity.ok(registeredPersonne);
     }
 
 

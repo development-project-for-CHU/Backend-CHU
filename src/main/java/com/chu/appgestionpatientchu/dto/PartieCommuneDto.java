@@ -17,15 +17,11 @@ public class PartieCommuneDto {
 
     private Long id ;
 
-    private List<DiagnostiqueConnueDto> listDiagnostiqueConnue ;
+    private List<Long> allergies;
 
+    private List<Long> diagnostiqueConnus;
 
-    private List<AllergieDto> listAllergie;
+    private List<Long> medicamentEnCours;
 
-
-    private  List<SpecialiteDto> listSpecialite ;
-
-
-    private List<MedicationEncoursDto> listMedicationEncours ;
-    private boolean grossesFemme ;
+    private List<Long> specificite;
 }

@@ -28,7 +28,7 @@ public class VisiteDto {
     private long dossierPatientid ;
 
 
-    private long partieCommuneid ;
+    private PartieCommuneDto partieCommune ;
 
-    private long partieSpecialiseid ;
+    private PartieSpecialiseDto partieSpecialise ;
 }

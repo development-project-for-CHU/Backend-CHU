@@ -1,7 +1,11 @@
 package com.chu.appgestionpatientchu.services;
 
 import com.chu.appgestionpatientchu.domain.DossierPatient;
+import com.chu.appgestionpatientchu.domain.PartieCommune;
+import com.chu.appgestionpatientchu.domain.PartieSpecialise;
 import com.chu.appgestionpatientchu.domain.Visite;
+import com.chu.appgestionpatientchu.dto.PartieCommuneDto;
+import com.chu.appgestionpatientchu.dto.PartieSpecialiseDto;
 import com.chu.appgestionpatientchu.dto.VisiteDto;
 import com.chu.appgestionpatientchu.mappers.VisiteMapper;
 import com.chu.appgestionpatientchu.repository.VisiteRepository;
@@ -29,10 +33,15 @@ import java.util.Optional;
             Optional<DossierPatient> dossierPatientOptional = dossierPatientService.findDossierpatientId(visiteDto.getDossierPatientid());
 
             if (dossierPatientOptional.isPresent()) {
+
                 DossierPatient dossierPatient = dossierPatientOptional.get();
+                PartieCommune partieCommune = mapPartieCommuneFromIds(visiteDto.getPartieCommune());
+                PartieSpecialise partieSpecialise = mapPartieSpecialiseFromIds(visiteDto.getPartieSpecialise());
 
                 // Associate the Visite with the DossierPatient
                 visite.setDossierPatient(dossierPatient);
+                visite.setPartieCommune(partieCommune);
+                visite.setPartieSpecialise(partieSpecialise);
 
                 // Save the Visite
                 Visite savedVisite = visiteRepository.save(visite);
@@ -75,6 +84,17 @@ import java.util.Optional;
 //            }
 //        }
 
+
+
+    private PartieCommune mapPartieCommuneFromIds(PartieCommuneDto partieCommuneDto) {
+        // Implement logic to map IDs to PartieCommune entity
+        return null;
+    }
+
+    private PartieSpecialise mapPartieSpecialiseFromIds(PartieSpecialiseDto partieSpecialiseDto) {
+        // Implement logic to map IDs to PartieSpecialise entity
+        return null;
+    }
         // You can add more methods as needed
 
         public static class VisiteNotFoundException extends RuntimeException {

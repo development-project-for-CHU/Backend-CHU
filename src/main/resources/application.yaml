@@ -1,6 +1,10 @@
+security.jwt.token.secret-key: my-secret-key
+logging.level.org.springframework.security: DEBUG
+
 server:
   port: 9091
 spring:
+
   application:
     name: CHU
   datasource:

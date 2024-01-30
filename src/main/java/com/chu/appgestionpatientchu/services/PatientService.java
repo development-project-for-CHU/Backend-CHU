@@ -25,6 +25,7 @@ public class PatientService {
         patientDto.setUpdateAt(new Date(System.currentTimeMillis()));
         Patient patient = PatientMapper.mapToPatient(patientDto);
         DossierPatient dossierPatient = DossierPatient.builder()
+                .id(patient.getIpp())
                 .dateCreation(new Date(System.currentTimeMillis()))
                 .build();
         patient.setDossierPatient(dossierPatient);
